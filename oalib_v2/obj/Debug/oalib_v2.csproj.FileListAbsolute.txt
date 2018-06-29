@@ -1,0 +1,20 @@
+c:\users\администратор\documents\visual studio 2013\Projects\oalib_v2\oalib_v2\bin\Debug\oalib_v2.dll
+c:\users\администратор\documents\visual studio 2013\Projects\oalib_v2\oalib_v2\bin\Debug\oalib_v2.pdb
+c:\users\администратор\documents\visual studio 2013\Projects\oalib_v2\oalib_v2\bin\Debug\oalib.dll
+c:\users\администратор\documents\visual studio 2013\Projects\oalib_v2\oalib_v2\obj\Debug\oalib_v2.csprojResolveAssemblyReference.cache
+c:\users\администратор\documents\visual studio 2013\Projects\oalib_v2\oalib_v2\obj\Debug\oalib_v2.dll
+c:\users\администратор\documents\visual studio 2013\Projects\oalib_v2\oalib_v2\obj\Debug\oalib_v2.pdb
+I:\oalib_v2\oalib_v2\bin\Debug\oalib_v2.dll
+I:\oalib_v2\oalib_v2\bin\Debug\oalib_v2.pdb
+I:\oalib_v2\oalib_v2\obj\Debug\oalib_v2.dll
+I:\oalib_v2\oalib_v2\obj\Debug\oalib_v2.pdb
+E:\oalib_v2\oalib_v2\bin\Debug\oalib_v2.dll
+E:\oalib_v2\oalib_v2\bin\Debug\oalib_v2.pdb
+E:\oalib_v2\oalib_v2\obj\Debug\oalib_v2.dll
+E:\oalib_v2\oalib_v2\obj\Debug\oalib_v2.pdb
+E:\1\project\WorkOrder\oalib_v2\bin\Debug\oalib_v2.dll
+E:\1\project\WorkOrder\oalib_v2\bin\Debug\oalib_v2.pdb
+E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.csprojResolveAssemblyReference.cache
+E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.csproj.CoreCompileInputs.cache
+E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.dll
+E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.pdb

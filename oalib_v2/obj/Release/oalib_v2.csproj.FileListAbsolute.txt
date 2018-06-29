@@ -1,0 +1,14 @@
+E:\oalib_v2\oalib_v2\bin\Release\oalib_v2.dll
+E:\oalib_v2\oalib_v2\bin\Release\oalib_v2.pdb
+E:\oalib_v2\oalib_v2\obj\Release\oalib_v2.dll
+E:\oalib_v2\oalib_v2\obj\Release\oalib_v2.pdb
+F:\F8Gb\oalib_v2\oalib_v2\bin\Release\oalib_v2.dll
+F:\F8Gb\oalib_v2\oalib_v2\bin\Release\oalib_v2.pdb
+F:\F8Gb\oalib_v2\oalib_v2\obj\Release\oalib_v2.dll
+F:\F8Gb\oalib_v2\oalib_v2\obj\Release\oalib_v2.pdb
+E:\1\project\oalib_v2\oalib_v2\bin\Release\oalib_v2.dll
+E:\1\project\oalib_v2\oalib_v2\bin\Release\oalib_v2.pdb
+E:\1\project\oalib_v2\oalib_v2\obj\Release\oalib_v2.csprojResolveAssemblyReference.cache
+E:\1\project\oalib_v2\oalib_v2\obj\Release\oalib_v2.dll
+E:\1\project\oalib_v2\oalib_v2\obj\Release\oalib_v2.pdb
+E:\1\project\oalib_v2\oalib_v2\obj\Release\oalib_v2.csproj.CoreCompileInputs.cache

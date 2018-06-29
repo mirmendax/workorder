@@ -1,0 +1,85 @@
+public void AddOrder(Emp giveorder, Emp foreperson, List<Emp> Team, string date, string estr, string instr)
+    {
+      Excel excel = new Excel();
+      try
+      {
+        excel.OpenDocument(Application.StartupPath + "\\Order1.xltx");
+        excel.Visible = true;
+        excel.SetValue("D6", date);
+        if (estr.Length > 60)
+        {
+          string[] strArray1 = estr.Split(Convert.ToChar(" "));
+          int index1 = 0;
+          string[] strArray2 = new string[4]
+          {
+            "",
+            "",
+            "",
+            ""
+          };
+          foreach (string str in strArray1)
+          {
+            string[] strArray3;
+            IntPtr index2;
+            (strArray3 = strArray2)[(int) (index2 = (IntPtr) index1)] = strArray3[index2] + str + " ";
+            if (strArray2[index1].Length > 60)
+              ++index1;
+          }
+          if (strArray2[0].Length != 0)
+            excel.SetValue("D8", strArray2[0]);
+          if (strArray2[1].Length != 0)
+            excel.SetValue("D9", strArray2[1]);
+          if (strArray2[2].Length != 0)
+            excel.SetValue("D10", strArray2[2]);
+          if (strArray2[3].Length != 0)
+            excel.SetValue("D11", strArray2[3]);
+        }
+        else
+          excel.SetValue("D8", estr);
+        excel.SetValue("E15", giveorder.ToString());
+        excel.SetValue("I15", foreperson.ToString());
+        excel.SetValue("I20", this.Foreperson.ToString());
+        excel.SetValue("I24", Team[0].ToString());
+        if (Team.Count > 1 && Team[1] != null)
+          excel.SetValue("I26", Team[1].ToString());
+        if (Team.Count > 2 && Team[2] != null)
+          excel.SetValue("I28", Team[2].ToString());
+        if (Team.Count > 3 && Team[3] != null)
+          excel.SetValue("I30", Team[3].ToString());
+        if (instr.Length > 70)
+        {
+          string[] strArray1 = instr.Split(Convert.ToChar(" "));
+          int index1 = 0;
+          string[] strArray2 = new string[4]
+          {
+            "",
+            "",
+            "",
+            ""
+          };
+          foreach (string str in strArray1)
+          {
+            string[] strArray3;
+            IntPtr index2;
+            (strArray3 = strArray2)[(int) (index2 = (IntPtr) index1)] = strArray3[index2] + str + " ";
+            if (strArray2[index1].Length > 70)
+              ++index1;
+          }
+          if (strArray2[0].Length != 0)
+            excel.SetValue("G33", strArray2[0]);
+          if (strArray2[1].Length != 0)
+            excel.SetValue("G34", strArray2[1]);
+          if (strArray2[2].Length != 0)
+            excel.SetValue("G35", strArray2[2]);
+          if (strArray2[3].Length == 0)
+            return;
+          excel.SetValue("G36", strArray2[3]);
+        }
+        else
+          excel.SetValue("G33", instr);
+      }
+      catch (Exception ex)
+      {
+        int num = (int) MessageBox.Show(ex.ToString());
+      }
+    }
