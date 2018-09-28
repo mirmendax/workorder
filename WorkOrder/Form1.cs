@@ -122,7 +122,9 @@ namespace WorkOrder
       /// <returns>true если уже есть</returns>
         public bool DublEmpOfOrder(Emp_v2 emp)
         {
+            
             bool result = false;
+            /*
             if (emp != null)
             {
                 
@@ -139,7 +141,7 @@ namespace WorkOrder
                 }
                 if (Order.GiveOrder.Name == emp.Name) result = true;
                 if (Order.ForePerson.Name == emp.Name) result = true;
-            }
+            }*/
             return result;
         }
              
