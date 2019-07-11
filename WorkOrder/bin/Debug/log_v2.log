@@ -58,3 +58,20 @@
    в WorkOrder.Form1.LoadAndRefresh() в G:\Work\workorder\WorkOrder\Form1.cs:строка 154
    в WorkOrder.Form1..ctor() в G:\Work\workorder\WorkOrder\Form1.cs:строка 113
    в WorkOrder.Program.Main() в G:\Work\workorder\WorkOrder\Program.cs:строка 43)
+[11.07.2019]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (System.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в WorkOrder.FrmEditEmploy.onRewriteListBox(List`1 _l) в G:\Work\workorder\WorkOrder\FrmEditEmploy.cs:строка 47
+   в WorkOrder.FrmEditEmploy.frmEditEmploy_Load(Object sender, EventArgs e) в G:\Work\workorder\WorkOrder\FrmEditEmploy.cs:строка 66
+   в System.Windows.Forms.Form.OnLoad(EventArgs e)
+   в System.Windows.Forms.Form.OnCreateControl()
+   в System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   в System.Windows.Forms.Control.CreateControl()
+   в System.Windows.Forms.Control.WmShowWindow(Message& m)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   в System.Windows.Forms.Form.WmShowWindow(Message& m)
+   в System.Windows.Forms.Form.WndProc(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam))

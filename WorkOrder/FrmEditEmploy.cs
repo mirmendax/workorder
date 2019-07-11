@@ -14,9 +14,10 @@ namespace WorkOrder
     public partial class FrmEditEmploy : Form
     {
         #region Data (NewListEmp, ListEmp, IsSaved)
-        private List<Emp_v2> _listEmp;
+        //private List<Emp_v2> _listEmp;
         private bool _isSave = false;
-        private List<Emp_v2> _newListEmp;
+        //private List<Emp_v2> _newListEmp;
+        /*
         public List<Emp_v2> NewListEmp
         {
             get { return _newListEmp; }
@@ -26,7 +27,9 @@ namespace WorkOrder
         {
             get { return _listEmp; }
             set { _listEmp = value; }
-        }
+        } 
+        */
+        
         public bool IsSaved
         {
             get { return _isSave; }
@@ -38,16 +41,24 @@ namespace WorkOrder
             InitializeComponent();
         }
 
-        public void onRewriteListBox(List<Emp_v2> _l)
+        public void onRewriteListBox()
         {
+            List<Emp_v2> list = new List<Emp_v2>();
+            DataTable dTable = SQL.Query("SELECT * FROM 'emp'");
+            foreach (DataRow item in dTable.Rows)
+            {
+                Emp_v2 temp = new Emp_v2(item);
+                list.Add(temp);
+            }
+
             listEmpLBox.Items.Clear();
             const string gTrue = "*";
             const string fTrue = "#";
             const string False = "";
-            for (int i = 0; i <= _l.Count - 1; i++)
+            foreach(Emp_v2 item in list)
             {
-                listEmpLBox.Items.Add(string.Format("{0}  {1}  {2}",
-                    _l[i].ToString(), (_l[i].RuleGiveOrder) ? gTrue : False, (_l[i].RuleForePerson) ? fTrue : False));
+                listEmpLBox.Items.Add(string.Format("{0}: {1}  {2}  {3}", item.ID.ToString(),
+                    item.ToString(), (item.RuleGiveOrder) ? gTrue : False, (item.RuleForePerson) ? fTrue : False));
             }
         }
 
@@ -63,7 +74,7 @@ namespace WorkOrder
 
         private void frmEditEmploy_Load(object sender, EventArgs e)
         {
-            onRewriteListBox(this.ListEmps);
+            onRewriteListBox();
             nameTBox.Text = "";
             groupBox.Value = 0;
             rGiveOrderChBox.CheckState = CheckState.Unchecked;
@@ -83,8 +94,8 @@ namespace WorkOrder
             int i = lb.SelectedIndex;
             if (i != -1)
             {
-                if (ListEmps[i] != null)
-                    onRewriteEmploy(ListEmps[i]);
+                //if (ListEmps[i] != null)
+                    //onRewriteEmploy(ListEmps[i]);
             }
         }
 
@@ -95,8 +106,8 @@ namespace WorkOrder
                 Emp_v2 editEmp = new Emp_v2(nameTBox.Text, (int)groupBox.Value, rGiveOrderChBox.Checked, rForePersonChBox.Checked);
                 if (listEmpLBox.SelectedIndex != -1)
                 {
-                    ListEmps[listEmpLBox.SelectedIndex] = editEmp;
-                    onRewriteListBox(ListEmps);
+                    //ListEmps[listEmpLBox.SelectedIndex] = editEmp;
+                    //onRewriteListBox(ListEmps);
                     SaveButton.ForeColor = Color.Red;
                 }
 
@@ -108,8 +119,9 @@ namespace WorkOrder
             if (nameTBox.Text != "" && groupBox.Value != 0)
             {
                 Emp_v2 newEmp = new Emp_v2(nameTBox.Text, (int)groupBox.Value, rGiveOrderChBox.Checked, rForePersonChBox.Checked);
-                ListEmps.Add(newEmp);
-                onRewriteListBox(ListEmps);
+                //ListEmps.Add(newEmp);
+                
+                //onRewriteListBox(ListEmps);
             }
             
         }
@@ -117,7 +129,7 @@ namespace WorkOrder
         private void SaveButton_Click(object sender, EventArgs e)
         {
             IsSaved = true;
-            NewListEmp = ListEmps;
+            //NewListEmp = ListEmps;
             //SaveButton.ForeColor = Color.Black;
             Hide();
         }
@@ -128,8 +140,8 @@ namespace WorkOrder
             {
                 if (listEmpLBox.SelectedIndex != -1)
                 {
-                    ListEmps.Remove(ListEmps[listEmpLBox.SelectedIndex]);
-                    onRewriteListBox(ListEmps);
+                    //ListEmps.Remove(ListEmps[listEmpLBox.SelectedIndex]);
+                    //onRewriteListBox(ListEmps);
                     onRewriteEmploy(new Emp_v2("", 2));
                 }
             }

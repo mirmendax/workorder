@@ -50,7 +50,7 @@ namespace WorkOrder
         public static string fileVersion = "ver.dat";
         public const string ACS_FILE = "es_v2.wo";
         public const string ERR_DUPLECATE_EMP = "Такой работник уже есть в бригаде!";
-        public const string DATE_FORMAT = "dd.MM.yyyy";
+        public const string DATE_FORMAT = "dd.MM.yy";
         public const string BR_OUT_DIAPOSON = "В бригаде достаточно работников!";
         public const string DOP_INSTR = "Другие указания по характеру и месту работы: ";
         //public const int R_GIVEORDER = 1;//Право отдающего распоряжение
@@ -528,14 +528,16 @@ namespace WorkOrder
         private void EditEmpButton_Click(object sender, EventArgs e)
         {
             fEditEmp.DesktopLocation = Location;
-            fEditEmp.ListEmps = ListEmploy.Employees;
+            //fEditEmp.ListEmps = ListEmploy.Employees;
             fEditEmp.ShowDialog();
 
+            /*
             if (fEditEmp.IsSaved)
             {
                 ListEmploy.Employees = fEditEmp.NewListEmp;
                 ListEmploy.Save();
             }
+            */
 
         }
 

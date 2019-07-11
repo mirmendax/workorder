@@ -23,9 +23,9 @@ namespace oalib_v2
         public static string FILE1 => FILE;
 
         public List<Emp_v2> Employees { get => employees; set => employees = value; }
-        public static int R_GIVEORDER { get => r_GIVEORDER; set => r_GIVEORDER = value; }
-        public static int R_FOREPERSON { get => r_FOREPERSON; set => r_FOREPERSON = value; }
-        public static int R_OTHER { get => r_OTHER; set => r_OTHER = value; }
+        public static int R_GIVEORDER { get => r_GIVEORDER; }
+        public static int R_FOREPERSON { get => r_FOREPERSON; }
+        public static int R_OTHER { get => r_OTHER; }
 
         /// <summary>
         /// Список работников по заданному праву
@@ -35,6 +35,8 @@ namespace oalib_v2
         public List<Emp_v2> EmployesOfRule(int rule)
         {
             List<Emp_v2> result = new List<Emp_v2>();
+            DataTable dTable = new DataTable();
+            /* sdsd
             if (rule == R_OTHER)
             {
                 return Employees;
@@ -58,6 +60,34 @@ namespace oalib_v2
                 }
             }
 
+            */
+            switch (rule)
+            {
+                case 1:
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rGiveOrder` = 1");
+                    break;
+                case 2:
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rForePerson` = 1");
+                    break;
+                case 5:
+                    dTable = SQL.Query("SELECT * FROM 'emp'");
+                    break;
+                default:
+                    break;
+            }
+            foreach (DataRow item in dTable.Rows)
+            {
+                Emp_v2 temp = new Emp_v2(item);
+                result.Add(temp);
+            }
+            return result;
+        }
+
+        public bool AddEmpl(Emp_v2 emp)
+        {
+            bool result = false;
+            result = SQL.Insert(emp);
+            Load();
             return result;
         }
 
@@ -86,62 +116,21 @@ namespace oalib_v2
         }
 
         /// <summary>
-        /// Загрузка списка работников из файла
+        /// Загрузка списка работников из базы
         /// </summary>
         public void Load()
         {
-            /*
-             * BinaryFormatter data = new BinaryFormatter();
-            if (!File.Exists(FILE1))
+            employees.Clear();
+            DataTable dTable = SQL.Query("SELECT * FROM 'emp'");
+            if (dTable.Rows.Count != 0)
             {
-                File.Open(FILE1, FileMode.OpenOrCreate, FileAccess.ReadWrite).Close();
-            }
-            FileStream file = File.Open(FILE1, FileMode.Open, FileAccess.ReadWrite);
-            try
-            {
-                Employees = (data.Deserialize(file) as List<Emp_v2>);
-            }
-            catch (System.Runtime.Serialization.SerializationException e)
-            {
-                new Log("Error Emps_v2 of :" + e.Message);
-            }
-            file.Close();
-             */
-            if (!File.Exists(Const.DATA_FILE))
-            {
-                System.Windows.Forms.MessageBox.Show("База данных отсутсвует.");
-            }
-            else
-            {
-                try
+                foreach (DataRow item in dTable.Rows)
                 {
-                    SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
-                    Conn.Open();
-                    
-                    String query = "";
-                    DataTable dTable = new DataTable();
-
-
-                    query = "SELECT * FROM emp";
-
-                    SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, Conn);
-                    adapter.Fill(dTable);
-
-                    if (dTable.Rows.Count != 0 )
-                    {
-                        foreach (DataRow item in dTable.Rows)
-                        {
-                            Emp_v2 temp = new Emp_v2(item);
-                            Employees.Add(temp);
-                        }
-                    }
-
-                }
-                catch (SQLiteException ex)
-                {
-                    new Log("Error DB: " + ex.Message);
+                    Emp_v2 temp = new Emp_v2(item);
+                    Employees.Add(temp);
                 }
             }
+            
 
         }
     }
