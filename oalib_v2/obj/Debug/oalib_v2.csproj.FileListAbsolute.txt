@@ -18,3 +18,9 @@ E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.csprojResolveAssemblyReferenc
 E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.csproj.CoreCompileInputs.cache
 E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.dll
 E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.pdb
+C:\Work\workorder\oalib_v2\bin\Debug\oalib_v2.dll
+C:\Work\workorder\oalib_v2\bin\Debug\oalib_v2.pdb
+C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.csprojAssemblyReference.cache
+C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.csproj.CoreCompileInputs.cache
+C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.dll
+C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.pdb

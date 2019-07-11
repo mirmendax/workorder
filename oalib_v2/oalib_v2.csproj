@@ -41,7 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data_v2.cs" />
+    <Compile Include="EmpS_v2.cs" />
+    <Compile Include="Emp_v2.cs" />
+    <Compile Include="ListOrder_v2.cs" />
     <Compile Include="oalib.cs" />
+    <Compile Include="Order_v2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
