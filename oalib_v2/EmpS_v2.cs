@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Data.SQLite;
+using System.Data;
 
 namespace oalib_v2
 {
@@ -72,10 +74,15 @@ namespace oalib_v2
         /// </summary>
         public void Save()
         {
+            /*
             BinaryFormatter data = new BinaryFormatter();
             FileStream file = File.Open(FILE1, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             data.Serialize(file, this.Employees);
             file.Close();
+            */
+            
+
+
         }
 
         /// <summary>
@@ -83,7 +90,8 @@ namespace oalib_v2
         /// </summary>
         public void Load()
         {
-            BinaryFormatter data = new BinaryFormatter();
+            /*
+             * BinaryFormatter data = new BinaryFormatter();
             if (!File.Exists(FILE1))
             {
                 File.Open(FILE1, FileMode.OpenOrCreate, FileAccess.ReadWrite).Close();
@@ -98,6 +106,42 @@ namespace oalib_v2
                 new Log("Error Emps_v2 of :" + e.Message);
             }
             file.Close();
+             */
+            if (!File.Exists(Const.DATA_FILE))
+            {
+                System.Windows.Forms.MessageBox.Show("База данных отсутсвует.");
+            }
+            else
+            {
+                try
+                {
+                    SQLiteConnection Conn = new SQLiteConnection("");
+                    Conn.Open();
+                    
+                    String query = "";
+                    DataTable dTable = new DataTable();
+
+
+                    query = "SELECT * FROM emp";
+
+                    SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, Conn);
+                    adapter.Fill(dTable);
+
+                    if (dTable.Rows.Count != 0 )
+                    {
+                        foreach (DataRow item in dTable.Rows)
+                        {
+                            
+                        }
+                    }
+
+                }
+                catch (SQLiteException ex)
+                {
+                    new Log("Error DB: " + ex.Message);
+                }
+            }
+
         }
     }
 }

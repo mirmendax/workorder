@@ -1,0 +1,17 @@
+C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.csprojAssemblyReference.cache
+C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.Form1.resources
+C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.Properties.Resources.resources
+C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.csproj.GenerateResource.cache
+C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.csproj.CoreCompileInputs.cache
+C:\Work\workorder\SQLEditor\bin\Debug\SQLEditor.exe.config
+C:\Work\workorder\SQLEditor\bin\Debug\SQLEditor.exe
+C:\Work\workorder\SQLEditor\bin\Debug\SQLEditor.pdb
+C:\Work\workorder\SQLEditor\bin\Debug\oalib_v2.dll
+C:\Work\workorder\SQLEditor\bin\Debug\System.Data.SQLite.dll
+C:\Work\workorder\SQLEditor\bin\Debug\oalib_v2.pdb
+C:\Work\workorder\SQLEditor\bin\Debug\System.Data.SQLite.pdb
+C:\Work\workorder\SQLEditor\bin\Debug\System.Data.SQLite.xml
+C:\Work\workorder\SQLEditor\bin\Debug\System.Data.SQLite.dll.config
+C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.csproj.CopyComplete
+C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.exe
+C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.pdb

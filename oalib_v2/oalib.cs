@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace oalib_v2
 {
+
+    public class Const
+    {
+        public const string DATA_FILE = "data.db";
+    }
     /// <summary>
     /// Объект для ведения логов ошибок
     /// </summary>

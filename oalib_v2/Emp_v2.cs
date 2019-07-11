@@ -8,6 +8,7 @@ namespace oalib_v2
     [Serializable]
     public class Emp_v2
     {
+        public int ID;
         public string Name;
         public int group;
         public bool RuleGiveOrder = false;
@@ -37,6 +38,14 @@ namespace oalib_v2
         }
         public Emp_v2(string name, int group, bool rGiveOrder, bool rForePerson)
         {
+            this.Name = name;
+            this.group = group;
+            this.RuleGiveOrder = rGiveOrder;
+            this.RuleForePerson = rForePerson;
+        }
+        public Emp_v2(int id, string name, int group, bool rGiveOrder, bool rForePerson)
+        {
+            this.ID = id;
             this.Name = name;
             this.group = group;
             this.RuleGiveOrder = rGiveOrder;
