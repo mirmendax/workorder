@@ -115,7 +115,7 @@ namespace oalib_v2
             {
                 try
                 {
-                    SQLiteConnection Conn = new SQLiteConnection("");
+                    SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
                     Conn.Open();
                     
                     String query = "";
@@ -131,7 +131,8 @@ namespace oalib_v2
                     {
                         foreach (DataRow item in dTable.Rows)
                         {
-                            
+                            Emp_v2 temp = new Emp_v2(item);
+                            Employees.Add(temp);
                         }
                     }
 

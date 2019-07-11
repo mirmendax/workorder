@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace oalib_v2
 {
@@ -43,13 +44,13 @@ namespace oalib_v2
             this.RuleGiveOrder = rGiveOrder;
             this.RuleForePerson = rForePerson;
         }
-        public Emp_v2(int id, string name, int group, bool rGiveOrder, bool rForePerson)
+        public Emp_v2(DataRow data)
         {
-            this.ID = id;
-            this.Name = name;
-            this.group = group;
-            this.RuleGiveOrder = rGiveOrder;
-            this.RuleForePerson = rForePerson;
+            this.ID = int.Parse(data["id"].ToString());
+            this.Name = data["name"].ToString();
+            this.group = int.Parse(data["group"].ToString());
+            this.RuleGiveOrder = data["rGiveOrder"].ToString() == "0" ? false : true;
+            this.RuleForePerson = data["rForePerson"].ToString() == "0" ? false : true; 
         }
         public override string ToString()
         {

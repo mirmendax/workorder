@@ -50,3 +50,11 @@
    в System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
    в System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
    в System.Threading.ThreadHelper.ThreadStart())
+[11.07.2019]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (System.ArgumentException: Data Source cannot be empty.  Use :memory: to open an in-memory database
+   в System.Data.SQLite.SQLiteConnection.Open()
+   в oalib_v2.EmpS_v2.Load() в G:\Work\workorder\oalib_v2\EmpS_v2.cs:строка 119
+   в WorkOrder.Form1.LoadAndRefresh() в G:\Work\workorder\WorkOrder\Form1.cs:строка 154
+   в WorkOrder.Form1..ctor() в G:\Work\workorder\WorkOrder\Form1.cs:строка 113
+   в WorkOrder.Program.Main() в G:\Work\workorder\WorkOrder\Program.cs:строка 43)
