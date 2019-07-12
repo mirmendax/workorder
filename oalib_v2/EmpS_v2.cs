@@ -30,37 +30,13 @@ namespace oalib_v2
         /// <summary>
         /// Список работников по заданному праву
         /// </summary>
-        /// <param name="rule">Право</param>
+        /// <param name="rule">Право (1 - Отдающий расопряжение, 2 - Производитель, 5 - Член бригады</param>
         /// <returns>Список</returns>
         public List<Emp_v2> EmployesOfRule(int rule)
         {
             List<Emp_v2> result = new List<Emp_v2>();
             DataTable dTable = new DataTable();
-            /* sdsd
-            if (rule == R_OTHER)
-            {
-                return Employees;
-            }
-            if (Employees.Count != 0)
-            {
-                for (int i = 0; i <= Employees.Count - 1; i++)
-                {
-                    if (rule == R_GIVEORDER)
-                    {
-                        if (Employees[i].RuleGiveOrder)
-                            result.Add(Employees[i]);
-                    }
-                    if (rule == R_FOREPERSON)
-                    {
-                        if (Employees[i].RuleForePerson)
-                            result.Add(Employees[i]);
-                    }
-
-
-                }
-            }
-
-            */
+            
             switch (rule)
             {
                 case 1:
@@ -83,13 +59,6 @@ namespace oalib_v2
             return result;
         }
 
-        public bool AddEmpl(Emp_v2 emp)
-        {
-            bool result = false;
-            result = SQL.Insert(emp);
-            Load();
-            return result;
-        }
 
        /// <summary>
        /// Конструктор класса
@@ -99,21 +68,7 @@ namespace oalib_v2
             Employees = new List<Emp_v2>();
         }
 
-        /// <summary>
-        /// Сохранение списка работников в файл
-        /// </summary>
-        public void Save()
-        {
-            /*
-            BinaryFormatter data = new BinaryFormatter();
-            FileStream file = File.Open(FILE1, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            data.Serialize(file, this.Employees);
-            file.Close();
-            */
-            
-
-
-        }
+        
 
         /// <summary>
         /// Загрузка списка работников из базы

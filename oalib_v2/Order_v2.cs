@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace oalib_v2
 {
@@ -26,7 +27,7 @@ namespace oalib_v2
         /// </summary>
         public DateTime date = new DateTime();
         /// <summary>
-        /// Работник отдающий расопряжение
+        /// Работник отдающий раcпоряжение
         /// </summary>
         public Emp_v2 GiveOrder = new Emp_v2();
         /// <summary>
@@ -75,6 +76,23 @@ namespace oalib_v2
             this.ForePerson = o_v2.ForePerson;
             this.brigada = o_v2.brigada;
             this.instr = o_v2.instr;
+        }
+
+        public Order_v2(DataRow data)
+        {
+            this.ID = int.Parse(data["id"].ToString());
+            this.number = int.Parse(data["number"].ToString());
+            this.estr = data["estr"].ToString();
+            this.date = DateTime.Parse(data["date"].ToString());
+
+            DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE id=" + data["giveorder"].ToString());
+            this.GiveOrder = new Emp_v2(dTable.Rows[0]);
+
+            dTable = SQL.Query("SELECT * FROM 'emp' WHERE id=" + data["foreperson"].ToString());
+            this.ForePerson = new Emp_v2(dTable.Rows[0]);
+
+            this.brigada = SQL.JSONToTeam(data["team"].ToString());
+            this.instr = data["instr"].ToString();
         }
 
         public Order_v2(string _estr, DateTime _date, Emp_v2 _gorder, Emp_v2 _fperson, List<Emp_v2> _brig, string _instr)

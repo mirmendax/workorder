@@ -87,3 +87,5 @@ G:\Work\workorder\WorkOrder\obj\Debug\WorkOrder.csproj.CoreCompileInputs.cache
 G:\Work\workorder\WorkOrder\obj\Debug\WorkOrder.csproj.CopyComplete
 G:\Work\workorder\WorkOrder\obj\Debug\WorkOrder.exe
 G:\Work\workorder\WorkOrder\obj\Debug\WorkOrder.pdb
+C:\Work\workorder\WorkOrder\bin\Debug\System.Data.SQLite.dll
+C:\Work\workorder\WorkOrder\bin\Debug\Newtonsoft.Json.dll

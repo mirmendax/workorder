@@ -13,35 +13,30 @@ namespace WorkOrder
 {
     public partial class FrmEditEmploy : Form
     {
-        #region Data (NewListEmp, ListEmp, IsSaved)
-        //private List<Emp_v2> _listEmp;
-        private bool _isSave = false;
-        //private List<Emp_v2> _newListEmp;
-        /*
-        public List<Emp_v2> NewListEmp
-        {
-            get { return _newListEmp; }
-            set { _newListEmp = value; }
-        }
-        public List<Emp_v2> ListEmps
-        {
-            get { return _listEmp; }
-            set { _listEmp = value; }
-        } 
-        */
         
-        public bool IsSaved
-        {
-            get { return _isSave; }
-            set { _isSave = value; }
-        }
-        #endregion
         public FrmEditEmploy()
         {
             InitializeComponent();
         }
 
-        public void onRewriteListBox()
+        private int IsID(string str)
+        {
+            try
+            {
+                string[] s = str.Split(new char[] { ':' });
+                int id = int.Parse(s[0]);
+                return id;
+            }
+            catch (Exception ex)
+            {
+
+                new Log("Error Parse: " + ex.Message);
+                return 0;
+            }
+            
+        }
+
+        public void OnRewriteListBox()
         {
             List<Emp_v2> list = new List<Emp_v2>();
             DataTable dTable = SQL.Query("SELECT * FROM 'emp'");
@@ -62,7 +57,7 @@ namespace WorkOrder
             }
         }
 
-        public void onRewriteEmploy(Emp_v2 emp)
+        public void OnRewriteEmploy(Emp_v2 emp)
         {
             nameTBox.Text = emp.Name;
             groupBox.Value = emp.group;
@@ -74,28 +69,29 @@ namespace WorkOrder
 
         private void frmEditEmploy_Load(object sender, EventArgs e)
         {
-            onRewriteListBox();
+            OnRewriteListBox();
             nameTBox.Text = "";
             groupBox.Value = 0;
             rGiveOrderChBox.CheckState = CheckState.Unchecked;
             rForePersonChBox.CheckState = CheckState.Unchecked;
-            IsSaved = false;
         }
 
         private void abortButton_Click(object sender, EventArgs e)
         {
-            IsSaved = false;
             Hide();
         }
 
         private void listEmpLBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox lb = (ListBox)sender;
-            int i = lb.SelectedIndex;
-            if (i != -1)
+            string str = lb.SelectedItem.ToString();
+            string[] s = str.Split(new char[] { ':' });
+            int id = int.Parse(s[0]);
+            if (id != 0)
             {
-                //if (ListEmps[i] != null)
-                    //onRewriteEmploy(ListEmps[i]);
+                DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE `id`=" + id.ToString());
+                Emp_v2 temp = new Emp_v2(dTable.Rows[0]);
+                OnRewriteEmploy(temp);
             }
         }
 
@@ -104,11 +100,12 @@ namespace WorkOrder
             if (nameTBox.Text != "" && groupBox.Value != 0)
             {
                 Emp_v2 editEmp = new Emp_v2(nameTBox.Text, (int)groupBox.Value, rGiveOrderChBox.Checked, rForePersonChBox.Checked);
-                if (listEmpLBox.SelectedIndex != -1)
+                int id = IsID(listEmpLBox.SelectedItem.ToString());
+                if (id != 0)
                 {
-                    //ListEmps[listEmpLBox.SelectedIndex] = editEmp;
-                    //onRewriteListBox(ListEmps);
-                    SaveButton.ForeColor = Color.Red;
+                    SQL.Update(id, editEmp);
+                    OnRewriteListBox();
+                    OnRewriteEmploy(new Emp_v2("", 2));
                 }
 
             }
@@ -119,33 +116,24 @@ namespace WorkOrder
             if (nameTBox.Text != "" && groupBox.Value != 0)
             {
                 Emp_v2 newEmp = new Emp_v2(nameTBox.Text, (int)groupBox.Value, rGiveOrderChBox.Checked, rForePersonChBox.Checked);
-                //ListEmps.Add(newEmp);
+                SQL.Insert(newEmp);
                 
-                //onRewriteListBox(ListEmps);
+                OnRewriteListBox();
+                OnRewriteEmploy(new Emp_v2("", 2));
             }
             
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            IsSaved = true;
-            //NewListEmp = ListEmps;
-            //SaveButton.ForeColor = Color.Black;
-            Hide();
-        }
 
         private void delbutton_Click(object sender, EventArgs e)
         {
-            try
+            int id = IsID(listEmpLBox.SelectedItem.ToString());
+            if (id != 0)
             {
-                if (listEmpLBox.SelectedIndex != -1)
-                {
-                    //ListEmps.Remove(ListEmps[listEmpLBox.SelectedIndex]);
-                    //onRewriteListBox(ListEmps);
-                    onRewriteEmploy(new Emp_v2("", 2));
-                }
+                SQL.Delete(id, "emp");
+                OnRewriteListBox();
+                OnRewriteEmploy(new Emp_v2("", 2));
             }
-            catch (Exception ex) { new Log("Error delete user: " + ex.Message); }
         }
     }
 }

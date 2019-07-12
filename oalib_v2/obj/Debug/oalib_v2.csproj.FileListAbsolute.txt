@@ -20,7 +20,6 @@ E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.dll
 E:\1\project\WorkOrder\oalib_v2\obj\Debug\oalib_v2.pdb
 C:\Work\workorder\oalib_v2\bin\Debug\oalib_v2.dll
 C:\Work\workorder\oalib_v2\bin\Debug\oalib_v2.pdb
-C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.csprojAssemblyReference.cache
 C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.csproj.CoreCompileInputs.cache
 C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.dll
 C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.pdb
@@ -31,3 +30,6 @@ G:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.csproj.CoreCompileInputs.cache
 G:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.csproj.CopyComplete
 G:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.dll
 G:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.pdb
+C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.csproj.CopyComplete
+C:\Work\workorder\oalib_v2\bin\Debug\Newtonsoft.Json.dll
+C:\Work\workorder\oalib_v2\obj\Debug\oalib_v2.csprojAssemblyReference.cache

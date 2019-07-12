@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using Newtonsoft.Json;
 
 using oalib_v2;
 
 namespace WorkOrder
 {
-    
+
     public partial class Form1 : Form
     {
         #region Forms
@@ -37,7 +38,7 @@ namespace WorkOrder
         private NotifyIcon iconTray;
 
         ListOrder_v2 ListOrder = new ListOrder_v2();
-        
+
         EmpS_v2 ListEmploy = new EmpS_v2();
 
         List<Order_v2> NotVerOrder = new List<Order_v2>();
@@ -50,7 +51,7 @@ namespace WorkOrder
         public static string fileVersion = "ver.dat";
         public const string ACS_FILE = "es_v2.wo";
         public const string ERR_DUPLECATE_EMP = "Такой работник уже есть в бригаде!";
-        public const string DATE_FORMAT = "dd.MM.yy";
+        //public const string DATE_FORMAT = "dd.MM.yy";
         public const string BR_OUT_DIAPOSON = "В бригаде достаточно работников!";
         public const string DOP_INSTR = "Другие указания по характеру и месту работы: ";
         //public const int R_GIVEORDER = 1;//Право отдающего распоряжение
@@ -84,11 +85,11 @@ namespace WorkOrder
                 _ACS_instr.Add(d.instr);
                 if (d.dop_instr != string.Empty && d.dop_instr != "" && d.dop_instr != null)
                     _ACS_dop_instr.Add(d.dop_instr);
-                
+
             }
             estrTBox.AutoCompleteCustomSource = _ACS_estr;
             instrTBox.AutoCompleteCustomSource = _ACS_instr;
-            
+
             if (_ACS_dop_instr.Count > 0)
                 dop_instrTBox.AutoCompleteCustomSource = _ACS_dop_instr;
             else
@@ -106,23 +107,23 @@ namespace WorkOrder
             _data_ACS.Serialize(_file, Data_ACS);
             _file.Close();
         }
-       
+
         public Form1()
         {
             InitializeComponent();
             LoadAndRefresh();
             LoadACS();
-            
-            
+
+
         }
-      /// <summary>
-      /// Проверка на повторяющихся работников
-      /// </summary>
-      /// <param name="emp">Добовляемый работник</param>
-      /// <returns>true если уже есть</returns>
+        /// <summary>
+        /// Проверка на повторяющихся работников
+        /// </summary>
+        /// <param name="emp">Добовляемый работник</param>
+        /// <returns>true если уже есть</returns>
         public bool DublEmpOfOrder(Emp_v2 emp)
         {
-            
+
             bool result = false;
             /*
             if (emp != null)
@@ -144,25 +145,24 @@ namespace WorkOrder
             }*/
             return result;
         }
-             
+
         /// <summary>
         /// Загрузка данных и обнуление формы
         /// </summary>
         public void LoadAndRefresh()
         {
             ListOrder.Load();
-            ListEmploy.Load();
+            //ListEmploy.Load();
             this.ordercountlbl.Text = ListOrder.CountOrder.ToString();
 
-            
-            datelbl.Text = DateTime.Today.ToString(DATE_FORMAT);///////////////////////////////////////////////////////////////////////////////////
-            
+            datelbl.Text = DateTime.Today.ToString(Const.DATE_FORMAT);
+
             Order = null;
             Order = new Order_v2();
             Order.date = DateTime.Today;
             Order.brigada.Clear();
             onRewrite();
-            
+
 
         }
         /// <summary>
@@ -179,6 +179,8 @@ namespace WorkOrder
         public bool AddOrder(Emp_v2 giveorder, Emp_v2 foreperson, List<Emp_v2> Team, string date, string estr, string instr, string dop_instr)
         {
             bool result = false;
+            /*УДАЛИТЬ*/
+            return true;  // УБРАТЬ ПОТОМ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Excel excel = new Excel();
             try
             {
@@ -269,7 +271,7 @@ namespace WorkOrder
         /// </summary>
         void onRewrite()
         {
-            datelbl.Text = Order.date.ToString(DATE_FORMAT);//////////////////////////////////////////////////
+            datelbl.Text = Order.date.ToString(Const.DATE_FORMAT);
             instrTBox.Text = Order.instr;
             estrTBox.Text = Order.estr;
             giveOrderlbl.Text = Order.GiveOrder.ToString();
@@ -288,9 +290,9 @@ namespace WorkOrder
             }
             else notverifyordBox.Visible = false;
         }
-      
 
-        
+
+
         /// <summary>
         /// Кнопка Дата
         /// </summary>
@@ -298,16 +300,16 @@ namespace WorkOrder
         /// <param name="e"></param>
         private void datebtn_Click(object sender, EventArgs e)
         {
-            
+
             fDate.StartPosition = FormStartPosition.Manual;
-            
+
             fDate.Location = new Point((Location.X + datebtn.Location.X), (Location.Y + datebtn.Location.Y));
             fDate.ShowDialog();
             if (fDate._IsSelected)
             {
                 Order.date = fDate._Date;
                 onRewrite();
-                datelbl.Text = Order.date.ToString(DATE_FORMAT);
+                datelbl.Text = Order.date.ToString(Const.DATE_FORMAT);
             }
         }
         /// <summary>
@@ -320,7 +322,7 @@ namespace WorkOrder
 
             fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS_v2.R_GIVEORDER); //Инициализация формы с правом отдающего распоряжение
             fEmployes.Location = new Point((Location.X + gOrderbtn.Location.X), (Location.Y + gOrderbtn.Location.Y));
-            
+
             fEmployes.ShowDialog();
             if (fEmployes.SelEmp != null)
             {
@@ -359,7 +361,7 @@ namespace WorkOrder
                 if (!DublEmpOfOrder(fEmployes.SelEmp))
                     Order.ForePerson = fEmployes.SelEmp;
                 else MessageBox.Show(ERR_DUPLECATE_EMP);
-                
+
             }
             onRewrite();
 
@@ -372,7 +374,7 @@ namespace WorkOrder
 
             onRewrite();
         }
-        
+
 
         private void addOrderbtn_Click(object sender, EventArgs e)
         {
@@ -386,18 +388,18 @@ namespace WorkOrder
             {
                 if (Order.GiveOrder.Name != "" && Order.ForePerson.Name != "")
                 {
-                    
+
                     if (Order.brigada.Count > 0)
                     {
                         if (AddOrder(Order.GiveOrder, Order.ForePerson, Order.brigada,
-                            Order.date.ToString(DATE_FORMAT), Order.estr, Order.instr, d_instr))
+                            Order.date.ToString(Const.DATE_FORMAT), Order.estr, Order.instr, d_instr))
                         {
                             ListOrder.AddOrder(Order);
-                            
+
                             Order = new Order_v2();
                             Order.date = DateTime.Today;
                             dop_instrTBox.Clear();
-                            
+
                             onRewrite();
                         }
 
@@ -437,25 +439,25 @@ namespace WorkOrder
             ListBox lb = sender as ListBox;
             if (Remove_br)
             {
-                
+
                 int i = lb.SelectedIndex;
 
                 if (i != -1)
                     Order.brigada.Remove(Order.brigada[i]);
-                
+
                 delchrbtn.Text = "-";
                 Remove_br = false;
             }
             onRewrite();
-            
-            
-            
+
+
+
         }
 
         private void delchrbtn_Click(object sender, EventArgs e)
         {
             delchrbtn.Text = "(-)";
-            Remove_br = true;          
+            Remove_br = true;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -476,14 +478,14 @@ namespace WorkOrder
                 fver.Close();
                 string v = Encoding.ASCII.GetString(ver, 0, ver.Length);
                 aboutlabel.Text = string.Format(ABOUT_FORMAT, v);
-                iconTray.Text = "WorkOrder "+v;
+                iconTray.Text = "WorkOrder " + v;
             }
             else
             {
                 aboutlabel.Text = string.Format(ABOUT_FORMAT, "");
                 iconTray.Text = "WorkOrder";
             }
-            
+
             iconTray.Visible = true;
             iconTray.MouseDoubleClick += new MouseEventHandler(nf_MouseDoubleClick);
         }
@@ -505,45 +507,27 @@ namespace WorkOrder
         private void arhivebtn_Click(object sender, EventArgs e)
         {
             fArhive.DesktopLocation = Location;
-            fArhive.ListOrder = ListOrder;
+
             fArhive.ShowDialog();
 
-            
-            
             Order_v2 nOrd = new Order_v2();
             if (fArhive.isSelected)
-            {
-
                 Order = fArhive.SelOrder;
-                Order.date = DateTime.Today;
-                onRewrite();
-            }
-            if (fArhive.IsDeleteAll)
-            {
-                ListOrder.ClearArhive();
-                onRewrite();
-            }
+            Order.date = DateTime.Today;
+            onRewrite();
         }
+
+
 
         private void EditEmpButton_Click(object sender, EventArgs e)
         {
             fEditEmp.DesktopLocation = Location;
-            //fEditEmp.ListEmps = ListEmploy.Employees;
             fEditEmp.ShowDialog();
-
-            /*
-            if (fEditEmp.IsSaved)
-            {
-                ListEmploy.Employees = fEditEmp.NewListEmp;
-                ListEmploy.Save();
-            }
-            */
-
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -556,7 +540,7 @@ namespace WorkOrder
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -573,29 +557,12 @@ namespace WorkOrder
 
         private void verifyordbtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                fVerifyOrder.Order = NotVerOrder[0];
-                fVerifyOrder.ShowDialog();
 
-                if (fVerifyOrder.IsVerify && fVerifyOrder.Number != 0)
-                {
-                    if (ListOrder.VerifyOrder(NotVerOrder[0], fVerifyOrder.Number))
-                    {
-                        onRewrite();
-                    }
-                }
-                if (fVerifyOrder.IsDelOrder)
-                {
-                    if (ListOrder.DeleteOrderNotVerify(fVerifyOrder.Order))
-                        MessageBox.Show("Распоряжение " + (fVerifyOrder.Order.ID + 1) + " удалено");
-                    onRewrite();
-                }
-            }
-            catch (Exception ex)
-            {
-                new Log("Verify error: " + ex.Source + " >>>" + ex.Message);
-            }
+            fVerifyOrder.DesktopLocation = Location;
+            fVerifyOrder.ShowDialog();
+            onRewrite();
+
+
         }
 
         private void estrTBox_TextChanged(object sender, EventArgs e)
@@ -608,7 +575,10 @@ namespace WorkOrder
             Order.instr = instrTBox.Text;
         }
 
-       
+        private void Button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
-    
+
 }

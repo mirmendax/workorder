@@ -40,7 +40,6 @@
             this.addButton = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.editButton = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
             this.abortButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.delbutton = new System.Windows.Forms.Button();
@@ -145,31 +144,17 @@
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
-            // SaveButton
-            // 
-            this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SaveButton.ImageIndex = 3;
-            this.SaveButton.ImageList = this.imageList1;
-            this.SaveButton.Location = new System.Drawing.Point(335, 331);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(128, 36);
-            this.SaveButton.TabIndex = 11;
-            this.SaveButton.Text = "Сохранить";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
             // abortButton
             // 
             this.abortButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.abortButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.abortButton.ImageIndex = 0;
+            this.abortButton.ImageIndex = 1;
             this.abortButton.ImageList = this.imageList1;
-            this.abortButton.Location = new System.Drawing.Point(473, 331);
+            this.abortButton.Location = new System.Drawing.Point(503, 345);
             this.abortButton.Name = "abortButton";
-            this.abortButton.Size = new System.Drawing.Size(129, 36);
+            this.abortButton.Size = new System.Drawing.Size(122, 36);
             this.abortButton.TabIndex = 12;
-            this.abortButton.Text = "Отмена";
+            this.abortButton.Text = "Закрыть";
             this.abortButton.UseVisualStyleBackColor = true;
             this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
             // 
@@ -205,7 +190,6 @@
             this.Controls.Add(this.delbutton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.abortButton);
-            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.groupBox);
@@ -240,7 +224,6 @@
         private System.Windows.Forms.NumericUpDown groupBox;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button editButton;
-        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button abortButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ImageList imageList1;

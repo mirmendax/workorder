@@ -14,27 +14,10 @@ namespace WorkOrder
     public partial class FrmVerifyOrder : Form
     {
         #region (Order(_ord), Number(_number) IsVerify(_isVerify) IsDelOrder(_isDelOrd)
-        private Order_v2 _ord;
-        private int _number = 0;
-        private bool _isVerify = false;
-        private bool _isDelOrd = false;
-        public Order_v2 Order
-        {
-            get { return _ord; }
-            set { _ord = value; }
-        }
-        public int Number
-        {
-            get { return _number; }
-        }
-        public bool IsVerify
-        {
-            get { return _isVerify; }
-        }
-        public bool IsDelOrder
-        {
-            get { return _isDelOrd; }
-        }
+        private Order_v2 Order;
+        private int _number;
+        
+        
         #endregion
 
 
@@ -45,23 +28,25 @@ namespace WorkOrder
 
         private void FrmVerifyOrder_Load(object sender, EventArgs e)
         {
-            _isDelOrd = false;
-            _isVerify = false;
-            _number = 0;
-            numberTBox.Value = _number;
-            if (_ord != null)
+            DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE number = 0");
+            if (dTable.Rows.Count > 0)
             {
-                estrlbl.Text = _ord.estr;
-                instlbl.Text = _ord.instr;
-                giveprslbl.Text = _ord.GiveOrder.ToString();
-                foreprslbl.Text = _ord.ForePerson.ToString();
-                datelbl.Text = _ord.date.ToString("d.MM.yyyy");
-                string s = string.Empty;
-                for (int i = 0; i <= _ord.brigada.Count - 1; i++)
+                Order = new Order_v2(dTable.Rows[0]);
+                numberTBox.Value = 0;
+                if (Order != null)
                 {
-                    s += _ord.brigada[i].ToString() + "\n";
+                    estrlbl.Text = Order.estr;
+                    instlbl.Text = Order.instr;
+                    giveprslbl.Text = Order.GiveOrder.ToString();
+                    foreprslbl.Text = Order.ForePerson.ToString();
+                    datelbl.Text = Order.date.ToString(Const.DATE_FORMAT);
+                    string s = string.Empty;
+                    for (int i = 0; i <= Order.brigada.Count - 1; i++)
+                    {
+                        s += Order.brigada[i].ToString() + "\n";
+                    }
+                    brglbl.Text = s;
                 }
-                brglbl.Text = s;
             }
         }
 
@@ -70,8 +55,13 @@ namespace WorkOrder
             try
             {
                 _number = (int)numberTBox.Value;
-                _isVerify = true;
-                Hide();
+                if (ListOrder_v2.VerifyOrder(Order.ID, _number))
+                    Hide();
+                else
+                {
+                    MessageBox.Show("Ошибка подтвеждения распоряжения.");
+                    Hide();
+                }
             }
             catch (Exception ex)
             {
@@ -82,8 +72,14 @@ namespace WorkOrder
 
         private void delordbtn_Click(object sender, EventArgs e)
         {
-            _isDelOrd = true;
-            Hide();
+            if (ListOrder_v2.DeleteOrderNotVerify(Order.ID))
+                Hide();
+            else
+            {
+                MessageBox.Show("Ошибка удаления распоряжения.");
+                Hide();
+            }
+            
         }
     }
 }
