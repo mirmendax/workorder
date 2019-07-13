@@ -143,3 +143,7 @@ near "'text'": syntax error
    в WorkOrder.Program.Main() в G:\Work\workorder\WorkOrder\Program.cs:строка 43)
 [13.07.19]Error ListOrder_v2 of: ObjectManager обнаружил недопустимое количество адресных привязок. Обычно это свидетельствует об ошибках в Formatter.
 [13.07.19]Error Data_v2 of:ObjectManager обнаружил недопустимое количество адресных привязок. Обычно это свидетельствует об ошибках в Formatter.
+[13.07.19]Error ListOrder_v2 of: Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[13.07.19]Error Data_v2 of:Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error ListOrder_v2 of: Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error Data_v2 of:Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".

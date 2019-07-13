@@ -51,15 +51,7 @@ namespace oalib
             return ID == (obj as Order).ID;//??????????????
         }
 
-        public bool checkedOrder(Order ord)//??????????????????????????
-        {
-            return estr == ord.estr
-                && instr == ord.instr
-                && GiveOrder == ord.GiveOrder
-                && ForePerson == ord.ForePerson
-                && brigada == ord.brigada
-                && date == ord.date;
-        }
+        
         public override int GetHashCode()
         {
             return base.GetHashCode();

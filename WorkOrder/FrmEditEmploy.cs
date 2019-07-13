@@ -25,7 +25,7 @@ namespace WorkOrder
         public void OnRewriteListBox()
         {
             List<Emp> list = new List<Emp>();
-            DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE hide = 1");
+            DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE hide = 0");
             foreach (DataRow item in dTable.Rows)
             {
                 Emp temp = new Emp(item);

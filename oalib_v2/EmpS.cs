@@ -40,13 +40,13 @@ namespace oalib
             switch (rule)
             {
                 case 1:
-                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rGiveOrder` = 1 AND `hide` = 1");
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rGiveOrder` = 1 AND `hide` = 0");
                     break;
                 case 2:
-                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rForePerson` = 1 AND `hide` = 1");
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rForePerson` = 1 AND `hide` = 0");
                     break;
                 case 5:
-                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `hide` = 1");
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `hide` = 0");
                     break;
                 default:
                     break;
