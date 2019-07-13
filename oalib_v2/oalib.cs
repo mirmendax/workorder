@@ -295,7 +295,7 @@ namespace oalib
                 }
 
                 //Проверка на совпадение в базе (ac_instrd) по dop_instr
-                str_select = "SELECT count(*) AS 'count' FROM `ac_instrd` WHERE text = text = '" + data.dop_instr + "'";
+                str_select = "SELECT count(*) AS 'count' FROM `ac_instrd` WHERE text = '" + data.dop_instr + "'";
                 dTable = new DataTable();
                 adapter = new SQLiteDataAdapter(str_select, Conn);
                 Conn.Open();
