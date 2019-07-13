@@ -7,22 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using oalib_v2;
+using oalib;
 
 namespace WorkOrder
 {
     public partial class FrmEmploy : Form
     {
         #region Data(Emps_v2 and Emp_v2)
-        private List<Emp_v2> _emps = new List<Emp_v2>();
-        private Emp_v2 _selEmp = new Emp_v2();
+        private List<Emp> _emps = new List<Emp>();
+        private Emp _selEmp = new Emp();
 
-        public List<Emp_v2> Emps
+        public List<Emp> Emps
         {
             get { return _emps; }
             set { _emps = value; }
         }
-        public Emp_v2 SelEmp
+        public Emp SelEmp
         {
             get { return _selEmp; }
             set { _selEmp = value; }

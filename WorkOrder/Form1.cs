@@ -11,7 +11,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Newtonsoft.Json;
 
-using oalib_v2;
+using oalib;
+using oalib;
 
 namespace WorkOrder
 {
@@ -37,15 +38,15 @@ namespace WorkOrder
 
         private NotifyIcon iconTray;
 
-        ListOrder_v2 ListOrder = new ListOrder_v2();
+        ListOrder ListOrder = new ListOrder();
 
-        EmpS_v2 ListEmploy = new EmpS_v2();
+        EmpS ListEmploy = new EmpS();
 
-        List<Order_v2> NotVerOrder = new List<Order_v2>();
+        List<Order> NotVerOrder = new List<Order>();
 
-        Order_v2 Order = new Order_v2();
+        Order Order = new Order();
 
-        List<Data_v2> Data_ACS = new List<Data_v2>();
+        List<Data> Data_ACS = new List<Data>();
 
         public const string ABOUT_FORMAT = "WorkOrder {0} Programming [MIR] Mendax (c) 2006-2017// СТСУ уч. ТАиВ";
         public static string fileVersion = "ver.dat";
@@ -68,7 +69,7 @@ namespace WorkOrder
                 _file = File.Open(ACS_FILE, FileMode.Open, FileAccess.ReadWrite);
                 try
                 {
-                    Data_ACS = ((_data_ACS.Deserialize(_file)) as List<Data_v2>);
+                    Data_ACS = ((_data_ACS.Deserialize(_file)) as List<Data>);
                 }
                 catch (System.Runtime.Serialization.SerializationException e)
                 {
@@ -79,7 +80,7 @@ namespace WorkOrder
             _ACS_estr.Clear();
             _ACS_instr.Clear();
             _ACS_dop_instr.Clear();
-            foreach (Data_v2 d in Data_ACS)
+            foreach (Data d in Data_ACS)
             {
                 _ACS_estr.Add(d.estr);
                 _ACS_instr.Add(d.instr);
@@ -101,11 +102,13 @@ namespace WorkOrder
         /// <summary>
         /// Сохранение автозополнения
         /// </summary>
-        public void SaveACS()
+        public void SaveACS(Data data)
         {
-            _file = File.Open(ACS_FILE, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            _data_ACS.Serialize(_file, Data_ACS);
-            _file.Close();
+            
+
+            //_file = File.Open(ACS_FILE, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            //_data_ACS.Serialize(_file, Data_ACS);
+            //_file.Close();
         }
 
         public Form1()
@@ -121,7 +124,7 @@ namespace WorkOrder
         /// </summary>
         /// <param name="emp">Добовляемый работник</param>
         /// <returns>true если уже есть</returns>
-        public bool DublEmpOfOrder(Emp_v2 emp)
+        public bool DublEmpOfOrder(Emp emp)
         {
 
             bool result = false;
@@ -158,7 +161,7 @@ namespace WorkOrder
             datelbl.Text = DateTime.Today.ToString(Const.DATE_FORMAT);
 
             Order = null;
-            Order = new Order_v2();
+            Order = new Order();
             Order.date = DateTime.Today;
             Order.brigada.Clear();
             onRewrite();
@@ -176,7 +179,7 @@ namespace WorkOrder
         /// <param name="instr">Иструктаж</param>
         /// <param name="dop_instr">Другие указания</param>
         /// <returns>true если успешно введены</returns>
-        public bool AddOrder(Emp_v2 giveorder, Emp_v2 foreperson, List<Emp_v2> Team, string date, string estr, string instr, string dop_instr)
+        public bool AddOrder(Emp giveorder, Emp foreperson, List<Emp> Team, string date, string estr, string instr, string dop_instr)
         {
             bool result = false;
             /*УДАЛИТЬ*/
@@ -320,7 +323,7 @@ namespace WorkOrder
         private void gOrderbtn_Click(object sender, EventArgs e)
         {
 
-            fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS_v2.R_GIVEORDER); //Инициализация формы с правом отдающего распоряжение
+            fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS.R_GIVEORDER); //Инициализация формы с правом отдающего распоряжение
             fEmployes.Location = new Point((Location.X + gOrderbtn.Location.X), (Location.Y + gOrderbtn.Location.Y));
 
             fEmployes.ShowDialog();
@@ -340,7 +343,7 @@ namespace WorkOrder
         private void giveClearbtn_Click(object sender, EventArgs e)
         {
             Order.GiveOrder = null;
-            Order.GiveOrder = new Emp_v2();
+            Order.GiveOrder = new Emp();
 
             onRewrite();
         }
@@ -351,7 +354,7 @@ namespace WorkOrder
         /// <param name="e"></param>
         private void forePbtn_Click(object sender, EventArgs e)
         {
-            fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS_v2.R_FOREPERSON);
+            fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS.R_FOREPERSON);
             fEmployes.Location = new Point((Location.X + forePbtn.Location.X), (Location.Y + forePbtn.Location.Y));
 
             fEmployes.ShowDialog();
@@ -370,7 +373,7 @@ namespace WorkOrder
         private void forePClearbtn_Click(object sender, EventArgs e)
         {
             Order.ForePerson = null;
-            Order.ForePerson = new Emp_v2();
+            Order.ForePerson = new Emp();
 
             onRewrite();
         }
@@ -381,9 +384,9 @@ namespace WorkOrder
             Order.estr = estrTBox.Text;
             Order.instr = instrTBox.Text;
             string d_instr = dop_instrTBox.Text;
-            Data_ACS.Add(new Data_v2(Order.estr, Order.instr, d_instr));
-            SaveACS();
-            LoadACS();
+            //Data_ACS.Add(new Data_v2(Order.estr, Order.instr, d_instr));
+            SQL.InsertAC(new Data(Order.estr, Order.instr, d_instr));
+            //LoadACS();
             if (Order.estr != "" && Order.instr != "")
             {
                 if (Order.GiveOrder.Name != "" && Order.ForePerson.Name != "")
@@ -396,7 +399,7 @@ namespace WorkOrder
                         {
                             ListOrder.AddOrder(Order);
 
-                            Order = new Order_v2();
+                            Order = new Order();
                             Order.date = DateTime.Today;
                             dop_instrTBox.Clear();
 
@@ -413,7 +416,7 @@ namespace WorkOrder
 
         private void addchrbtn_Click(object sender, EventArgs e)
         {
-            fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS_v2.R_OTHER);
+            fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS.R_OTHER);
             fEmployes.Location = new Point((Location.X + addchrbtn.Location.X),
                 (Location.Y + addchrbtn.Location.Y));
             fEmployes.ShowDialog();
@@ -510,7 +513,7 @@ namespace WorkOrder
 
             fArhive.ShowDialog();
 
-            Order_v2 nOrd = new Order_v2();
+            Order nOrd = new Order();
             if (fArhive.isSelected)
                 Order = fArhive.SelOrder;
             Order.date = DateTime.Today;
@@ -532,7 +535,7 @@ namespace WorkOrder
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Order = new Order_v2();
+            Order = new Order();
             Order.date = DateTime.Today;
             dop_instrTBox.Clear();
             onRewrite();

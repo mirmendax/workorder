@@ -5,24 +5,24 @@ using System.IO;
 using System.Data.SQLite;
 using System.Data;
 
-namespace oalib_v2
+namespace oalib
 {
     /// <summary>
     /// Объект списка работника
     /// </summary>
     [Serializable]
-    public class EmpS_v2
+    public class EmpS
     {
-        const string FILE = "emps_v2.wo";
+        
 
-        private List<Emp_v2> employees;
+        private List<Emp> employees;
         private static int r_GIVEORDER = 1;//Право отдающего распоряжение
         private static int r_FOREPERSON = 2;//Право производителя работ
         private static int r_OTHER = 5;//Член бригады
 
-        public static string FILE1 => FILE;
+        
 
-        public List<Emp_v2> Employees { get => employees; set => employees = value; }
+        public List<Emp> Employees { get => employees; set => employees = value; }
         public static int R_GIVEORDER { get => r_GIVEORDER; }
         public static int R_FOREPERSON { get => r_FOREPERSON; }
         public static int R_OTHER { get => r_OTHER; }
@@ -32,28 +32,28 @@ namespace oalib_v2
         /// </summary>
         /// <param name="rule">Право (1 - Отдающий расопряжение, 2 - Производитель, 5 - Член бригады</param>
         /// <returns>Список</returns>
-        public List<Emp_v2> EmployesOfRule(int rule)
+        public List<Emp> EmployesOfRule(int rule)
         {
-            List<Emp_v2> result = new List<Emp_v2>();
+            List<Emp> result = new List<Emp>();
             DataTable dTable = new DataTable();
             
             switch (rule)
             {
                 case 1:
-                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rGiveOrder` = 1");
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rGiveOrder` = 1 AND `hide` = 1");
                     break;
                 case 2:
-                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rForePerson` = 1");
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rForePerson` = 1 AND `hide` = 1");
                     break;
                 case 5:
-                    dTable = SQL.Query("SELECT * FROM 'emp'");
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `hide` = 1");
                     break;
                 default:
                     break;
             }
             foreach (DataRow item in dTable.Rows)
             {
-                Emp_v2 temp = new Emp_v2(item);
+                Emp temp = new Emp(item);
                 result.Add(temp);
             }
             return result;
@@ -63,30 +63,11 @@ namespace oalib_v2
        /// <summary>
        /// Конструктор класса
        /// </summary>
-        public EmpS_v2()
+        public EmpS()
         {
-            Employees = new List<Emp_v2>();
+            Employees = new List<Emp>();
         }
 
         
-
-        /// <summary>
-        /// Загрузка списка работников из базы
-        /// </summary>
-        public void Load()
-        {
-            employees.Clear();
-            DataTable dTable = SQL.Query("SELECT * FROM 'emp'");
-            if (dTable.Rows.Count != 0)
-            {
-                foreach (DataRow item in dTable.Rows)
-                {
-                    Emp_v2 temp = new Emp_v2(item);
-                    Employees.Add(temp);
-                }
-            }
-            
-
-        }
     }
 }

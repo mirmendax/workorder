@@ -1,0 +1,7 @@
+G:\Work\workorder\oalib_v2\obj\Debug\oalib.csprojAssemblyReference.cache
+G:\Work\workorder\oalib_v2\obj\Debug\oalib.csproj.CoreCompileInputs.cache
+G:\Work\workorder\oalib_v2\obj\Debug\oalib.csproj.CopyComplete
+G:\Work\workorder\oalib_v2\bin\Debug\oalib.dll
+G:\Work\workorder\oalib_v2\bin\Debug\oalib.pdb
+G:\Work\workorder\oalib_v2\obj\Debug\oalib.dll
+G:\Work\workorder\oalib_v2\obj\Debug\oalib.pdb

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data;
 
-namespace oalib_v2
+namespace oalib
 {
     /// <summary>
     /// Объект работника
     /// </summary>
     [Serializable]
-    public class Emp_v2
+    public class Emp
     {
         public int ID;
         public string Name;
@@ -16,15 +16,15 @@ namespace oalib_v2
         public bool RuleForePerson = false;
         public override bool Equals(object obj)
         {
-            if ((obj as Emp_v2) == null) return false;
-            return (this.Name == (obj as Emp_v2).Name);
+            if ((obj as Emp) == null) return false;
+            return (this.Name == (obj as Emp).Name);
         }
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
-        public Emp_v2() 
+        public Emp() 
         {
             Name = "";
             group = 0;
@@ -32,19 +32,19 @@ namespace oalib_v2
             RuleForePerson = false;
         }
 
-        public Emp_v2(string name, int gr)
+        public Emp(string name, int gr)
         {
             this.Name = name;
             this.group = gr;
         }
-        public Emp_v2(string name, int group, bool rGiveOrder, bool rForePerson)
+        public Emp(string name, int group, bool rGiveOrder, bool rForePerson)
         {
             this.Name = name;
             this.group = group;
             this.RuleGiveOrder = rGiveOrder;
             this.RuleForePerson = rForePerson;
         }
-        public Emp_v2(DataRow data)
+        public Emp(DataRow data)
         {
             this.ID = int.Parse(data["id"].ToString());
             this.Name = data["name"].ToString();

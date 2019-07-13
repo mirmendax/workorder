@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using oalib_v2;
+using oalib;
 
 namespace WorkOrder
 {
     public partial class FrmVerifyOrder : Form
     {
         #region (Order(_ord), Number(_number) IsVerify(_isVerify) IsDelOrder(_isDelOrd)
-        private Order_v2 Order;
+        private Order Order;
         private int _number;
         
         
@@ -31,7 +31,7 @@ namespace WorkOrder
             DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE number = 0");
             if (dTable.Rows.Count > 0)
             {
-                Order = new Order_v2(dTable.Rows[0]);
+                Order = new Order(dTable.Rows[0]);
                 numberTBox.Value = 0;
                 if (Order != null)
                 {
@@ -55,7 +55,7 @@ namespace WorkOrder
             try
             {
                 _number = (int)numberTBox.Value;
-                if (ListOrder_v2.VerifyOrder(Order.ID, _number))
+                if (ListOrder.VerifyOrder(Order.ID, _number))
                     Hide();
                 else
                 {
@@ -72,7 +72,7 @@ namespace WorkOrder
 
         private void delordbtn_Click(object sender, EventArgs e)
         {
-            if (ListOrder_v2.DeleteOrderNotVerify(Order.ID))
+            if (ListOrder.DeleteOrderNotVerify(Order.ID))
                 Hide();
             else
             {

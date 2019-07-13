@@ -1,2 +1,145 @@
 ﻿[12.07.2019]Error DB: SQL logic error
 no such column: number
+[13.07.19]Error insert DB: unknown error
+Insufficient parameters supplied to the command
+[13.07.19]Error insert DB: unknown error
+Insufficient parameters supplied to the command
+[13.07.19]Error insert DB: unknown error
+Insufficient parameters supplied to the command
+[13.07.19]Error insert DB: unknown error
+Insufficient parameters supplied to the command
+[13.07.19]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (code = Unknown (-1), message = System.Data.SQLite.SQLiteException (0x80004005): unknown error
+Insufficient parameters supplied to the command
+   в System.Data.SQLite.SQLiteStatement.BindParameter(Int32 index, SQLiteParameter param)
+   в System.Data.SQLite.SQLiteStatement.BindParameters()
+   в System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   в System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   в System.Data.SQLite.SQLiteDataReader.NextResult()
+   в System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   в System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   в System.Data.SQLite.SQLiteCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   в System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   в System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   в System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   в System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   в oalib_v2.SQL.InsertAC(Data_v2 data) в G:\Work\workorder\oalib_v2\oalib.cs:строка 314
+   в WorkOrder.Form1.addOrderbtn_Click(Object sender, EventArgs e) в G:\Work\workorder\WorkOrder\Form1.cs:строка 387
+   в System.Windows.Forms.Control.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   в System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   в System.Windows.Forms.Button.WndProc(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   в System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   в System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.Run(Form mainForm)
+   в WorkOrder.Program.Main() в G:\Work\workorder\WorkOrder\Program.cs:строка 43)
+[13.07.19]Error insert DB: unknown error
+Insufficient parameters supplied to the command
+[13.07.19]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (code = Unknown (-1), message = System.Data.SQLite.SQLiteException (0x80004005): unknown error
+Insufficient parameters supplied to the command
+   в System.Data.SQLite.SQLiteStatement.BindParameter(Int32 index, SQLiteParameter param)
+   в System.Data.SQLite.SQLiteStatement.BindParameters()
+   в System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   в System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   в System.Data.SQLite.SQLiteDataReader.NextResult()
+   в System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   в System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   в System.Data.SQLite.SQLiteCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   в System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   в System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   в System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   в System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   в oalib_v2.SQL.InsertAC(Data_v2 data) в G:\Work\workorder\oalib_v2\oalib.cs:строка 314
+   в WorkOrder.Form1.addOrderbtn_Click(Object sender, EventArgs e) в G:\Work\workorder\WorkOrder\Form1.cs:строка 387
+   в System.Windows.Forms.Control.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   в System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   в System.Windows.Forms.Button.WndProc(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   в System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   в System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.Run(Form mainForm)
+   в WorkOrder.Program.Main() в G:\Work\workorder\WorkOrder\Program.cs:строка 43)
+[13.07.19]Error Insert: Операция является недопустимой из-за текущего состояния объекта.
+[13.07.19]Error insert DB: SQL logic error
+near "text": syntax error
+[13.07.19]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (code = Error (1), message = System.Data.SQLite.SQLiteException (0x800007BF): SQL logic error
+near "text": syntax error
+   в System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   в System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   в System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   в System.Data.SQLite.SQLiteDataReader.NextResult()
+   в System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   в System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   в System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   в System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   в oalib_v2.SQL.InsertAC(Data_v2 data) в G:\Work\workorder\oalib_v2\oalib.cs:строка 319
+   в WorkOrder.Form1.addOrderbtn_Click(Object sender, EventArgs e) в G:\Work\workorder\WorkOrder\Form1.cs:строка 387
+   в System.Windows.Forms.Control.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   в System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   в System.Windows.Forms.Button.WndProc(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   в System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   в System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.Run(Form mainForm)
+   в WorkOrder.Program.Main() в G:\Work\workorder\WorkOrder\Program.cs:строка 43)
+[13.07.19]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (code = Error (1), message = System.Data.SQLite.SQLiteException (0x800007BF): SQL logic error
+near "'text'": syntax error
+   в System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   в System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   в System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   в System.Data.SQLite.SQLiteDataReader.NextResult()
+   в System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   в System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   в System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   в System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   в oalib_v2.SQL.InsertAC(Data_v2 data) в G:\Work\workorder\oalib_v2\oalib.cs:строка 275
+   в WorkOrder.Form1.addOrderbtn_Click(Object sender, EventArgs e) в G:\Work\workorder\WorkOrder\Form1.cs:строка 387
+   в System.Windows.Forms.Control.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   в System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   в System.Windows.Forms.Button.WndProc(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   в System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   в System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.Run(Form mainForm)
+   в WorkOrder.Program.Main() в G:\Work\workorder\WorkOrder\Program.cs:строка 43)
+[13.07.19]Error ListOrder_v2 of: ObjectManager обнаружил недопустимое количество адресных привязок. Обычно это свидетельствует об ошибках в Formatter.
+[13.07.19]Error Data_v2 of:ObjectManager обнаружил недопустимое количество адресных привязок. Обычно это свидетельствует об ошибках в Formatter.

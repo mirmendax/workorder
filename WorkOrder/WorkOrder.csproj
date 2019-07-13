@@ -140,9 +140,9 @@
     <Content Include="Hire-me.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\oalib_v2\oalib_v2.csproj">
+    <ProjectReference Include="..\oalib_v2\oalib.csproj">
       <Project>{7bc19cd9-cb4f-41c0-a547-cf9508cd595b}</Project>
-      <Name>oalib_v2</Name>
+      <Name>oalib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkOrder", "WorkOrder\WorkOrder.csproj", "{51D8D060-E294-46C1-A029-147E42AAB5EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "oalib_v2", "oalib_v2\oalib_v2.csproj", "{7BC19CD9-CB4F-41C0-A547-CF9508CD595B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "oalib", "oalib_v2\oalib.csproj", "{7BC19CD9-CB4F-41C0-A547-CF9508CD595B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLEditor", "SQLEditor\SQLEditor.csproj", "{0F8FDE33-1046-4A02-8911-4424D564D6BB}"
 EndProject

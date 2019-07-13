@@ -7,35 +7,35 @@ using System.Data.SQLite;
 using System.Data;
 using Newtonsoft.Json;
 
-namespace oalib_v2
+namespace oalib
 {
     /// <summary>
     /// Объект списка распоряжений
     /// </summary>
-    public class ListOrder_v2
+    public class ListOrder
     {
         const string FILE = "arhiveorder_v2.wo";
-        public List<Order_v2> listOrder;
+        public List<Order> listOrder;
         /// <summary>
         /// Список не подтвержденных распоряжений
         /// </summary>
         /// <returns>Список</returns>
-        public List<Order_v2> NotVerifydOrderList()
+        public List<Order> NotVerifydOrderList()
         {
-            List<Order_v2> result = new List<Order_v2>();
+            List<Order> result = new List<Order>();
 
             DataTable dT = SQL.Query("SELECT * FROM 'order' WHERE number = 0");
             foreach (DataRow item in dT.Rows)
             {
-                Order_v2 temp = new Order_v2(item);
+                Order temp = new Order(item);
                 result.Add(temp);
             }
-            
-            
+
+
             return result;
         }
 
-       
+
         /// <summary>
         /// Подтверждение распоряжения
         /// </summary>
@@ -99,11 +99,11 @@ namespace oalib_v2
         /// </summary>
         /// <param name="fOrder">Объект распоряжения</param>
         /// <returns>Порядковый номер в списке</returns>
-        public int FindOrder(Order_v2 fOrder)
+        public int FindOrder(Order fOrder)
         {
-            this.Load();
+            Load();
             int result = -1;
-            for (int i = 0; i <= listOrder.Count-1; i++)
+            for (int i = 0; i <= listOrder.Count - 1; i++)
             {
                 if (listOrder[i].Equals(fOrder))
                 {
@@ -115,29 +115,21 @@ namespace oalib_v2
             return result;
         }
 
-        public ListOrder_v2()
+        public ListOrder()
         {
-            listOrder = new List<Order_v2>();
+            listOrder = new List<Order>();
         }
-        /// <summary>
-        /// Удаление архива
-        /// </summary>
-        public void ClearArhive()
-        {
 
-            listOrder.Clear();
-            this.Save();
-        }
         /// <summary>
         /// Список распоряжений в заданом интервале времени
         /// </summary>
         /// <param name="a">С</param>
         /// <param name="b">По</param>
         /// <returns>Список распоряжений</returns>
-        public List<Order_v2> ShowOrders(DateTime a, DateTime b)
+        public static List<Order> ShowOrders(List<Order> data, DateTime a, DateTime b)
         {
-            this.Load();
-            List<Order_v2> result = new List<Order_v2>();
+
+            List<Order> result = new List<Order>();
             List<DateTime> dd = new List<DateTime>();
             DateTime dcount = a;
             while (dcount <= b)
@@ -145,27 +137,15 @@ namespace oalib_v2
                 dd.Add(dcount);
                 dcount = dcount.AddDays(1);
             }
-            /*
-            foreach (DateTime t in dd)
-            {
-                foreach (Order_v2 o in listOrder)
-                {
-                    if ((o.date == t) && (o.number != 0))
-                    {
-                        result.Add(o);
-                        //MessageBox.Show(o.date.ToString("dd.MM.yyyy")+">"+o.ID + " :" + o.number);
-                    }
-                }
-            }
-            */
-            IEnumerable<Order_v2> query = from o in listOrder
-                                          join t in dd on o.date equals t
-                                          select o;
+
+            IEnumerable<Order> query = from o in data
+                                       join t in dd on o.date equals t
+                                       select o;
             result = query.ToList();
             return result;
         }
 
-        
+
         /// <summary>
         /// Кол-во распоряжений
         /// </summary>
@@ -191,10 +171,10 @@ namespace oalib_v2
         /// </summary>
         /// <param name="neworder">Объект распоряжения</param>
         /// <returns>Объект с присвоенным идентификатором</returns>
-        public bool AddOrder(Order_v2 neworder)
+        public bool AddOrder(Order neworder)
         {
             return SQL.Insert(neworder);
-            
+
         }
         /// <summary>
         /// Сохранение списка
@@ -203,7 +183,7 @@ namespace oalib_v2
         {
             BinaryFormatter data = new BinaryFormatter();
             FileStream file = File.Open(FILE, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            data.Serialize(file, this.listOrder);
+            data.Serialize(file, listOrder);
             file.Close();
         }
         /// <summary>
@@ -222,7 +202,7 @@ namespace oalib_v2
             FileStream file = File.Open(FILE, FileMode.Open, FileAccess.ReadWrite);
             try
             {
-                listOrder = (data.Deserialize(file) as List<Order_v2>);
+                listOrder = data.Deserialize(file) as List<Order>;
             }
             catch (System.Runtime.Serialization.SerializationException e)
             {

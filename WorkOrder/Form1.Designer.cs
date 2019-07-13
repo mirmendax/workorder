@@ -137,6 +137,7 @@
             this.imageList1.Images.SetKeyName(8, "36.png");
             this.imageList1.Images.SetKeyName(9, "54.png");
             this.imageList1.Images.SetKeyName(10, "warn.ico");
+            this.imageList1.Images.SetKeyName(11, "provider.ico");
             // 
             // label2
             // 
@@ -323,6 +324,7 @@
             // 
             // listBox1
             // 
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(9, 34);
             this.listBox1.Name = "listBox1";
@@ -378,9 +380,9 @@
             this.arhivebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.arhivebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.arhivebtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.arhivebtn.ImageIndex = 8;
+            this.arhivebtn.ImageKey = "36.png";
             this.arhivebtn.ImageList = this.imageList1;
-            this.arhivebtn.Location = new System.Drawing.Point(18, 371);
+            this.arhivebtn.Location = new System.Drawing.Point(18, 375);
             this.arhivebtn.Name = "arhivebtn";
             this.arhivebtn.Size = new System.Drawing.Size(233, 43);
             this.arhivebtn.TabIndex = 35;
@@ -392,7 +394,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(12, 418);
+            this.label6.Location = new System.Drawing.Point(12, 428);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(145, 17);
             this.label6.TabIndex = 36;
@@ -402,7 +404,7 @@
             // 
             this.ordercountlbl.AutoSize = true;
             this.ordercountlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ordercountlbl.Location = new System.Drawing.Point(183, 418);
+            this.ordercountlbl.Location = new System.Drawing.Point(183, 428);
             this.ordercountlbl.Name = "ordercountlbl";
             this.ordercountlbl.Size = new System.Drawing.Size(16, 17);
             this.ordercountlbl.TabIndex = 37;
