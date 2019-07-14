@@ -1,13 +1,7 @@
-﻿using System;
+﻿using oalib;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using oalib;
 
 namespace WorkOrder
 {
@@ -27,7 +21,7 @@ namespace WorkOrder
             get { return _selEmp; }
             set { _selEmp = value; }
         }
-        
+
 
 
         #endregion
@@ -44,7 +38,7 @@ namespace WorkOrder
             {
                 for (int i = 0; i <= _emps.Count - 1; i++)
                 {
-                        listBox1.Items.Add(_emps[i]);
+                    listBox1.Items.Add(_emps[i]);
                 }
             }
         }

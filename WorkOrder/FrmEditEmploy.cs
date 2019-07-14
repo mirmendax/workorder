@@ -1,26 +1,20 @@
-﻿using System;
+﻿using oalib;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using oalib;
-using oalib;
 
 namespace WorkOrder
 {
     public partial class FrmEditEmploy : Form
     {
-        
+
         public FrmEditEmploy()
         {
             InitializeComponent();
         }
 
-        
+
 
         public void OnRewriteListBox()
         {
@@ -36,7 +30,7 @@ namespace WorkOrder
             const string gTrue = "*";
             const string fTrue = "#";
             const string False = "";
-            foreach(Emp item in list)
+            foreach (Emp item in list)
             {
                 listEmpLBox.Items.Add(string.Format("{0}: {1}  {2}  {3}", item.ID.ToString(),
                     item.ToString(), (item.RuleGiveOrder) ? gTrue : False, (item.RuleForePerson) ? fTrue : False));
@@ -49,8 +43,8 @@ namespace WorkOrder
             groupBox.Value = emp.group;
             rGiveOrderChBox.Checked = emp.RuleGiveOrder;
             rForePersonChBox.Checked = emp.RuleForePerson;
-            
-            
+
+
         }
 
         private void frmEditEmploy_Load(object sender, EventArgs e)
@@ -103,11 +97,11 @@ namespace WorkOrder
             {
                 Emp newEmp = new Emp(nameTBox.Text, (int)groupBox.Value, rGiveOrderChBox.Checked, rForePersonChBox.Checked);
                 SQL.Insert(newEmp);
-                
+
                 OnRewriteListBox();
                 OnRewriteEmploy(new Emp("", 2));
             }
-            
+
         }
 
 

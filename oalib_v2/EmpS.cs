@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using System.Data.SQLite;
 using System.Data;
 
 namespace oalib
@@ -13,14 +10,14 @@ namespace oalib
     [Serializable]
     public class EmpS
     {
-        
+
 
         private List<Emp> employees;
         private static int r_GIVEORDER = 1;//Право отдающего распоряжение
         private static int r_FOREPERSON = 2;//Право производителя работ
         private static int r_OTHER = 5;//Член бригады
 
-        
+
 
         public List<Emp> Employees { get => employees; set => employees = value; }
         public static int R_GIVEORDER { get => r_GIVEORDER; }
@@ -36,7 +33,7 @@ namespace oalib
         {
             List<Emp> result = new List<Emp>();
             DataTable dTable = new DataTable();
-            
+
             switch (rule)
             {
                 case 1:
@@ -60,14 +57,14 @@ namespace oalib
         }
 
 
-       /// <summary>
-       /// Конструктор класса
-       /// </summary>
+        /// <summary>
+        /// Конструктор класса
+        /// </summary>
         public EmpS()
         {
             Employees = new List<Emp>();
         }
 
-        
+
     }
 }

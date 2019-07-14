@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using oalib;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using oalib;
 
 namespace WorkOrder
 {
@@ -16,8 +10,8 @@ namespace WorkOrder
         #region (Order(_ord), Number(_number) IsVerify(_isVerify) IsDelOrder(_isDelOrd)
         private Order Order;
         private int _number;
-        
-        
+
+
         #endregion
 
 
@@ -79,7 +73,7 @@ namespace WorkOrder
                 MessageBox.Show("Ошибка удаления распоряжения.");
                 Hide();
             }
-            
+
         }
     }
 }

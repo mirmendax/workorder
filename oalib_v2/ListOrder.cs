@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Data;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
-using System.Data.SQLite;
-using System.Data;
-using Newtonsoft.Json;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace oalib
 {
@@ -14,7 +13,7 @@ namespace oalib
     /// </summary>
     public class ListOrder
     {
-        const string FILE = "arhiveorder_v2.wo";
+        private const string FILE = "arhiveorder_v2.wo";
         public List<Order> listOrder;
         /// <summary>
         /// Список не подтвержденных распоряжений

@@ -24,7 +24,7 @@ namespace oalib
             return base.GetHashCode();
         }
 
-        public Emp() 
+        public Emp()
         {
             Name = "";
             group = 0;
@@ -50,24 +50,30 @@ namespace oalib
             this.Name = data["name"].ToString();
             this.group = int.Parse(data["group"].ToString());
             this.RuleGiveOrder = data["rGiveOrder"].ToString() == "0" ? false : true;
-            this.RuleForePerson = data["rForePerson"].ToString() == "0" ? false : true; 
+            this.RuleForePerson = data["rForePerson"].ToString() == "0" ? false : true;
         }
         public override string ToString()
         {
             string result;
             switch (this.group)
             {
-                case 1: result = this.Name + " гр I";
+                case 1:
+                    result = this.Name + " гр I";
                     break;
-                case 2: result = this.Name + " гр II";
+                case 2:
+                    result = this.Name + " гр II";
                     break;
-                case 3: result = this.Name + " гр III";
+                case 3:
+                    result = this.Name + " гр III";
                     break;
-                case 4: result = this.Name + " гр IV";
+                case 4:
+                    result = this.Name + " гр IV";
                     break;
-                case 5: result = this.Name + " гр V";
+                case 5:
+                    result = this.Name + " гр V";
                     break;
-                default: result = "none";
+                default:
+                    result = "none";
                     break;
             }
             return result;

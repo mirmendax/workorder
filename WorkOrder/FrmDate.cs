@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WorkOrder
@@ -17,7 +10,7 @@ namespace WorkOrder
         public bool _IsSelected
         {
             get { return isSelec; }
-            
+
         }
 
         public DateTime _Date
@@ -32,12 +25,12 @@ namespace WorkOrder
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            
+
         }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-            
+
             isSelec = true;
             _Date = e.Start;
             Hide();

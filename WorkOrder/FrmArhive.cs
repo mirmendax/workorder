@@ -1,23 +1,18 @@
-﻿using System;
+﻿using oalib;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using oalib;
 
 namespace WorkOrder
 {
     public partial class FrmArhive : Form
     {
         #region Data (ListOrder, SelOrder, isSelected, IsDeleteAll)
-        List<Order> ListOrder = new List<Order>();
+        private List<Order> ListOrder = new List<Order>();
         private Order _selorder = new Order();
         private bool _selected = false;
-        
+
         public Order SelOrder
         {
             get { return _selorder; }
@@ -38,9 +33,7 @@ namespace WorkOrder
             InitializeComponent();
         }
 
-        
-
-        void OnRewriteListBox()
+        private void OnRewriteListBox()
         {
             listBox1.Items.Clear();
             ListOrder.Clear();
@@ -49,7 +42,7 @@ namespace WorkOrder
             DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE number != 0 ORDER BY id DESC");
             foreach (DataRow item in dTable.Rows)
             {
-                
+
                 Order o = new Order(item);
                 ListOrder.Add(o);
                 string s = string.Format("{0}:\t{1}:{2}:{3} >{4}", o.ID.ToString(), o.date.ToString(Const.DATE_FORMAT), o.GiveOrder, o.ForePerson, o.estr);
@@ -66,11 +59,11 @@ namespace WorkOrder
             button2.Enabled = false;
         }
 
-        void OnRewriteListBox(List<Order> list)
+        private void OnRewriteListBox(List<Order> list)
         {
-            
+
             listBox1.Items.Clear();
-            
+
             // Заполнение listbox'а из данных таблицы 
             foreach (Order o in list)
             {
@@ -88,14 +81,14 @@ namespace WorkOrder
             OnRewriteListBox();
             isSelected = false;
             SelOrder = null;
-            
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox lb = (ListBox)sender;
             ID = Tools.IsID(lb.SelectedItem.ToString());
-            
+
             button2.Enabled = true;
 
         }
@@ -106,12 +99,12 @@ namespace WorkOrder
             {
                 DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE id=" + ID.ToString());
                 SelOrder = new Order(dTable.Rows[0]);
-                
+
                 isSelected = true;
                 Hide();
             }
             else button2.Enabled = false;
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -137,7 +130,7 @@ namespace WorkOrder
         {
             if (MessageBox.Show("Удалить архив?", "Удалить архив?", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                
+
                 Hide();
             }
         }

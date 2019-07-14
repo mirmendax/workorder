@@ -51,7 +51,7 @@ namespace oalib
             return ID == (obj as Order).ID;//??????????????
         }
 
-        
+
         public override int GetHashCode()
         {
             return base.GetHashCode();

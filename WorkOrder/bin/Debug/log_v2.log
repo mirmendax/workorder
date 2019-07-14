@@ -147,3 +147,64 @@ near "'text'": syntax error
 [13.07.19]Error Data_v2 of:Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
 [14.07.19]Error ListOrder_v2 of: Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
 [14.07.19]Error Data_v2 of:Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error ListOrder_v2 of: Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error Data_v2 of:Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error ListOrder_v2 of: Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error Data_v2 of:Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error ListOrder_v2 of: Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error ListOrder_v2 of: Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error DB: SQL logic error
+near "FORM": syntax error
+[14.07.19]Error DB: SQL logic error
+near "FORM": syntax error
+[14.07.19]Error DB: SQL logic error
+near "FORM": syntax error
+[14.07.19]Error ListOrder_v2 of: Не удалось найти сборку "oalib_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null".
+[14.07.19]Error insert DB: constraint failed
+UNIQUE constraint failed: ac_instrd.text
+[14.07.19]Error insert DB: constraint failed
+UNIQUE constraint failed: ac_instrd.text
+[14.07.19]Error insert DB: constraint failed
+UNIQUE constraint failed: ac_instrd.text
+[14.07.19]Error insert DB: constraint failed
+UNIQUE constraint failed: ac_instrd.text
+[14.07.19]Error insert DB: constraint failed
+UNIQUE constraint failed: ac_instrd.text
+[14.07.19]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (System.IndexOutOfRangeException: В позиции 0 строка отсутствует.
+   в System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   в System.Data.DataRowCollection.get_Item(Int32 index)
+   в oalib.SQL.Version(String program) в G:\Work\workorder\oalib_v2\oalib.cs:строка 57
+   в WorkOrder.Form1.Form1_Load(Object sender, EventArgs e) в G:\Work\workorder\WorkOrder\Form1.cs:строка 461
+   в System.Windows.Forms.Form.OnLoad(EventArgs e)
+   в System.Windows.Forms.Form.OnCreateControl()
+   в System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   в System.Windows.Forms.Control.CreateControl()
+   в System.Windows.Forms.Control.WmShowWindow(Message& m)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   в System.Windows.Forms.Form.WmShowWindow(Message& m)
+   в System.Windows.Forms.Form.WndProc(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam))
+[14.07.19]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (System.ArgumentException: Столбец "verison" не принадлежит таблице .
+   в System.Data.DataRow.GetDataColumn(String columnName)
+   в System.Data.DataRow.get_Item(String columnName)
+   в oalib.SQL.Version(String program) в G:\Work\workorder\oalib_v2\oalib.cs:строка 58
+   в WorkOrder.Form1.Form1_Load(Object sender, EventArgs e) в G:\Work\workorder\WorkOrder\Form1.cs:строка 461
+   в System.Windows.Forms.Form.OnLoad(EventArgs e)
+   в System.Windows.Forms.Form.OnCreateControl()
+   в System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   в System.Windows.Forms.Control.CreateControl()
+   в System.Windows.Forms.Control.WmShowWindow(Message& m)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   в System.Windows.Forms.Form.WmShowWindow(Message& m)
+   в System.Windows.Forms.Form.WndProc(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam))

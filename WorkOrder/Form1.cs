@@ -1,18 +1,11 @@
-﻿using System;
+﻿using oalib;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using Newtonsoft.Json;
-
-using oalib;
-using oalib;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
 
 namespace WorkOrder
 {
@@ -20,74 +13,62 @@ namespace WorkOrder
     public partial class Form1 : Form
     {
         #region Forms
-        FrmDate fDate = new FrmDate();
-        FrmEmploy fEmployes = new FrmEmploy();
-        FrmArhive fArhive = new FrmArhive();
-        FrmEditEmploy fEditEmp = new FrmEditEmploy();
-        FrmVerifyOrder fVerifyOrder = new FrmVerifyOrder();
+        private FrmDate fDate = new FrmDate();
+        private FrmEmploy fEmployes = new FrmEmploy();
+        private FrmArhive fArhive = new FrmArhive();
+        private FrmEditEmploy fEditEmp = new FrmEditEmploy();
+        private FrmVerifyOrder fVerifyOrder = new FrmVerifyOrder();
         #endregion
 
-        AutoCompleteStringCollection _ACS_estr = new AutoCompleteStringCollection();
-        AutoCompleteStringCollection _ACS_instr = new AutoCompleteStringCollection();
-        AutoCompleteStringCollection _ACS_dop_instr = new AutoCompleteStringCollection();
-
-        BinaryFormatter _data_ACS = new BinaryFormatter();
-        FileStream _file;
-
-        bool Remove_br = false;
+        private AutoCompleteStringCollection _ACS_estr = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection _ACS_instr = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection _ACS_dop_instr = new AutoCompleteStringCollection();
+        private BinaryFormatter _data_ACS = new BinaryFormatter();
+        private FileStream _file;
+        private bool Remove_br = false;
 
         private NotifyIcon iconTray;
+        private ListOrder ListOrder = new ListOrder();
+        private EmpS ListEmploy = new EmpS();
+        private List<Order> NotVerOrder = new List<Order>();
+        private Order Order = new Order();
+        private List<Data> Data_ACS = new List<Data>();
 
-        ListOrder ListOrder = new ListOrder();
 
-        EmpS ListEmploy = new EmpS();
-
-        List<Order> NotVerOrder = new List<Order>();
-
-        Order Order = new Order();
-
-        List<Data> Data_ACS = new List<Data>();
-
-        public const string ABOUT_FORMAT = "WorkOrder {0} Programming [MIR] Mendax (c) 2006-2017// СТСУ уч. ТАиВ";
-        public static string fileVersion = "ver.dat";
-        public const string ACS_FILE = "es_v2.wo";
-        public const string ERR_DUPLECATE_EMP = "Такой работник уже есть в бригаде!";
-        //public const string DATE_FORMAT = "dd.MM.yy";
-        public const string BR_OUT_DIAPOSON = "В бригаде достаточно работников!";
-        public const string DOP_INSTR = "Другие указания по характеру и месту работы: ";
-        //public const int R_GIVEORDER = 1;//Право отдающего распоряжение
-        //public const int R_FOREPERSON = 2;//Право производителя работ
-        //public const int R_OTHER = 5;//Член бригады
 
         /// <summary>
         /// Загрузка автозаполнения
         /// </summary>
         public void LoadACS()
         {
-            if (File.Exists(ACS_FILE))
-            {
-                _file = File.Open(ACS_FILE, FileMode.Open, FileAccess.ReadWrite);
-                try
-                {
-                    Data_ACS = ((_data_ACS.Deserialize(_file)) as List<Data>);
-                }
-                catch (System.Runtime.Serialization.SerializationException e)
-                {
-                    new Log("Error Data_v2 of:" + e.Message);
-                }
-                _file.Close();
-            }
             _ACS_estr.Clear();
             _ACS_instr.Clear();
             _ACS_dop_instr.Clear();
-            foreach (Data d in Data_ACS)
+            DataTable dT_estr = SQL.Query("SELECT * FROM 'ac_estr'");
+            foreach (DataRow item in dT_estr.Rows)
             {
-                _ACS_estr.Add(d.estr);
-                _ACS_instr.Add(d.instr);
-                if (d.dop_instr != string.Empty && d.dop_instr != "" && d.dop_instr != null)
-                    _ACS_dop_instr.Add(d.dop_instr);
-
+                string str = item["text"].ToString();
+                if (str != "")
+                    _ACS_estr.Add(str);
             }
+
+            dT_estr = SQL.Query("SELECT * FROM 'ac_instr'");
+            foreach (DataRow item in dT_estr.Rows)
+            {
+                string str = item["text"].ToString();
+                if (str != "")
+                    _ACS_instr.Add(str);
+            }
+
+            dT_estr = SQL.Query("SELECT * FROM 'ac_instrd'");
+            foreach (DataRow item in dT_estr.Rows)
+            {
+                string str = item["text"].ToString();
+                if (str != "")
+                    _ACS_dop_instr.Add(str);
+            }
+
+
             estrTBox.AutoCompleteCustomSource = _ACS_estr;
             instrTBox.AutoCompleteCustomSource = _ACS_instr;
 
@@ -99,17 +80,7 @@ namespace WorkOrder
             }
 
         }
-        /// <summary>
-        /// Сохранение автозополнения
-        /// </summary>
-        public void SaveACS(Data data)
-        {
-            
 
-            //_file = File.Open(ACS_FILE, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            //_data_ACS.Serialize(_file, Data_ACS);
-            //_file.Close();
-        }
 
         public Form1()
         {
@@ -154,8 +125,8 @@ namespace WorkOrder
         /// </summary>
         public void LoadAndRefresh()
         {
-            ListOrder.Load();
-            //ListEmploy.Load();
+
+
             this.ordercountlbl.Text = ListOrder.CountOrder.ToString();
 
             datelbl.Text = DateTime.Today.ToString(Const.DATE_FORMAT);
@@ -165,7 +136,6 @@ namespace WorkOrder
             Order.date = DateTime.Today;
             Order.brigada.Clear();
             onRewrite();
-
 
         }
         /// <summary>
@@ -183,7 +153,7 @@ namespace WorkOrder
         {
             bool result = false;
             /*УДАЛИТЬ*/
-            return true;  // УБРАТЬ ПОТОМ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //return true;  // УБРАТЬ ПОТОМ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Excel excel = new Excel();
             try
             {
@@ -260,7 +230,7 @@ namespace WorkOrder
                 }
                 else
                     excel.SetValue("G33", instr);
-                excel.SetValue("C45", DOP_INSTR + dop_instr);
+                excel.SetValue("C45", Const.DOP_INSTR + dop_instr);
                 result = true;
             }
             catch (Exception ex)
@@ -269,10 +239,11 @@ namespace WorkOrder
             }
             return result;
         }
+
         /// <summary>
         /// Перезапись формы с новыми данными
         /// </summary>
-        void onRewrite()
+        private void onRewrite()
         {
             datelbl.Text = Order.date.ToString(Const.DATE_FORMAT);
             instrTBox.Text = Order.instr;
@@ -331,7 +302,7 @@ namespace WorkOrder
             {
                 if (!DublEmpOfOrder(fEmployes.SelEmp))
                     Order.GiveOrder = fEmployes.SelEmp;
-                else MessageBox.Show(ERR_DUPLECATE_EMP);
+                else MessageBox.Show(Const.ERR_DUPLECATE_EMP);
             }
             onRewrite();
         }
@@ -363,7 +334,7 @@ namespace WorkOrder
             {
                 if (!DublEmpOfOrder(fEmployes.SelEmp))
                     Order.ForePerson = fEmployes.SelEmp;
-                else MessageBox.Show(ERR_DUPLECATE_EMP);
+                else MessageBox.Show(Const.ERR_DUPLECATE_EMP);
 
             }
             onRewrite();
@@ -430,8 +401,8 @@ namespace WorkOrder
 
 
                     }
-                    else MessageBox.Show(ERR_DUPLECATE_EMP);
-                else MessageBox.Show(BR_OUT_DIAPOSON);
+                    else MessageBox.Show(Const.ERR_DUPLECATE_EMP);
+                else MessageBox.Show(Const.BR_OUT_DIAPOSON);
             }
             onRewrite();
 
@@ -473,27 +444,16 @@ namespace WorkOrder
         {
             iconTray = new NotifyIcon();
             iconTray.Icon = this.Icon;
-            if (File.Exists(fileVersion))
-            {
-                FileStream fver = File.Open(fileVersion, FileMode.Open);
-                byte[] ver = new byte[fver.Length];
-                fver.Read(ver, 0, (int)fver.Length);
-                fver.Close();
-                string v = Encoding.ASCII.GetString(ver, 0, ver.Length);
-                aboutlabel.Text = string.Format(ABOUT_FORMAT, v);
-                iconTray.Text = "WorkOrder " + v;
-            }
-            else
-            {
-                aboutlabel.Text = string.Format(ABOUT_FORMAT, "");
-                iconTray.Text = "WorkOrder";
-            }
+
+            aboutlabel.Text = string.Format(Const.ABOUT_FORMAT, SQL.Version("WorkOrder"));
+            iconTray.Text = "WorkOrder " + SQL.Version("WorkOrder");
+
 
             iconTray.Visible = true;
             iconTray.MouseDoubleClick += new MouseEventHandler(nf_MouseDoubleClick);
         }
 
-        void nf_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void nf_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
             {

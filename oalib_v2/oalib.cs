@@ -1,16 +1,10 @@
-﻿using System;
-using System.IO;
-
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.SQLite;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using oalib;
+using System.Data;
+using System.Data.SQLite;
+using System.IO;
+using System.Windows.Forms;
 
 namespace oalib
 {
@@ -20,6 +14,10 @@ namespace oalib
         public const string DATA_FILE = "data.db";
         public const string DATE_FORMAT = "dd.MM.yy";
         public const string FILE_LOG = "log_v2.log";
+        public const string ABOUT_FORMAT = "WorkOrder {0} Programming [MIR] Mendax (c) 2006-2017// СТСУ уч. ТАиВ";
+        public const string ERR_DUPLECATE_EMP = "Такой работник уже есть в бригаде!";
+        public const string BR_OUT_DIAPOSON = "В бригаде достаточно работников!";
+        public const string DOP_INSTR = "Другие указания по характеру и месту работы: ";
 
 
     }
@@ -46,6 +44,16 @@ namespace oalib
 
     public class SQL
     {
+        public static string Version(string program)
+        {
+            string result = "";
+            DataTable dTable = SQL.Query("SELECT * FROM 'versions' WHERE name = '" + program + "'");
+            if (dTable.Rows.Count > 0)
+                result = dTable.Rows[0]["version"].ToString() + "." + dTable.Rows[0]["build"].ToString() + "";
+
+            return result;
+        }
+
         /// <summary>
         /// Перевод из JSON в список членов бригады
         /// </summary>
@@ -293,25 +301,27 @@ namespace oalib
                     Command.ExecuteNonQuery();
                     Conn.Close();
                 }
-
-                //Проверка на совпадение в базе (ac_instrd) по dop_instr
-                str_select = "SELECT count(*) AS 'count' FROM `ac_instrd` WHERE text = '" + data.dop_instr + "'";
-                dTable = new DataTable();
-                adapter = new SQLiteDataAdapter(str_select, Conn);
-                Conn.Open();
-                adapter.Fill(dTable);
-                Conn.Close();
-                if (dTable.Rows[0]["count"].ToString() == "0")
+                if (data.dop_instr != "")
                 {
-                    str_insert = "INSERT INTO 'ac_instrd' (text) VALUES (@text)";
-                    SQLiteCommand Command = new SQLiteCommand(str_insert, Conn);
-                    Command.Parameters.AddWithValue("@text", data.dop_instr);
+                    //Проверка на совпадение в базе (ac_instrd) по dop_instr
+                    str_select = "SELECT count(*) AS 'count' FROM `ac_instrd` WHERE text = '" + data.dop_instr + "'";
+                    dTable = new DataTable();
+                    adapter = new SQLiteDataAdapter(str_select, Conn);
                     Conn.Open();
-                    Command.ExecuteNonQuery();
+                    adapter.Fill(dTable);
                     Conn.Close();
+                    if (dTable.Rows[0]["count"].ToString() == "0")
+                    {
+                        str_insert = "INSERT INTO 'ac_instrd' (text) VALUES (@text)";
+                        SQLiteCommand Command = new SQLiteCommand(str_insert, Conn);
+                        Command.Parameters.AddWithValue("@text", data.dop_instr);
+                        Conn.Open();
+                        Command.ExecuteNonQuery();
+                        Conn.Close();
+                    }
+
                 }
                 return true;
-
             }
             catch (SQLiteException ex)
             {
