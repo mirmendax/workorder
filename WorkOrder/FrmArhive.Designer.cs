@@ -56,7 +56,7 @@
             this.listBox1.Location = new System.Drawing.Point(12, 12);
             this.listBox1.Name = "listBox1";
             this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(944, 329);
+            this.listBox1.Size = new System.Drawing.Size(938, 329);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -194,9 +194,11 @@
             this.button3.ImageList = this.imageList1;
             this.button3.Location = new System.Drawing.Point(442, 411);
             this.button3.Name = "button3";
+            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button3.Size = new System.Drawing.Size(130, 38);
             this.button3.TabIndex = 13;
-            this.button3.Text = "Вывести все";
+            this.button3.Text = "Последние (30)   ";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 

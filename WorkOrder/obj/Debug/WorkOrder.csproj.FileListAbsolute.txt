@@ -51,8 +51,6 @@ E:\1\project\WorkOrder\WorkOrder\bin\Debug\oalib_v2.pdb
 C:\Work\workorder\WorkOrder\bin\Debug\WorkOrder.exe.config
 C:\Work\workorder\WorkOrder\bin\Debug\WorkOrder.exe
 C:\Work\workorder\WorkOrder\bin\Debug\WorkOrder.pdb
-C:\Work\workorder\WorkOrder\bin\Debug\oalib_v2.dll
-C:\Work\workorder\WorkOrder\bin\Debug\oalib_v2.pdb
 C:\Work\workorder\WorkOrder\obj\Debug\WorkOrder.csprojAssemblyReference.cache
 C:\Work\workorder\WorkOrder\obj\Debug\WorkOrder.Form1.resources
 C:\Work\workorder\WorkOrder\obj\Debug\WorkOrder.FrmArhive.resources
@@ -89,3 +87,5 @@ C:\Work\workorder\WorkOrder\bin\Debug\System.Data.SQLite.dll
 C:\Work\workorder\WorkOrder\bin\Debug\Newtonsoft.Json.dll
 G:\Work\workorder\WorkOrder\bin\Debug\oalib.dll
 G:\Work\workorder\WorkOrder\bin\Debug\oalib.pdb
+C:\Work\workorder\WorkOrder\bin\Debug\oalib.dll
+C:\Work\workorder\WorkOrder\bin\Debug\oalib.pdb

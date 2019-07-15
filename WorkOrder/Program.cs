@@ -12,7 +12,7 @@ namespace WorkOrder
     {
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        private static bool SetForegroundWindow(IntPtr hWnd);
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
         [DllImport("user32.dll", SetLastError = true)]
         internal static extern int ShowWindow(int hwnd, int nCmdShow);
 

@@ -37,18 +37,24 @@ namespace WorkOrder
         {
             listBox1.Items.Clear();
             ListOrder.Clear();
-
+            
             // Заполнение listbox'а из данных таблицы 
-            DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE number != 0 ORDER BY id DESC");
+            DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE number != 0 ORDER BY id DESC LIMIT 30");
+            //List<float> l_ms = new List<float>();
             foreach (DataRow item in dTable.Rows)
             {
-
-                Order o = new Order(item);
+                
+                Order o = new Order(item, true);
+                
+                
                 ListOrder.Add(o);
-                string s = string.Format("{0}:\t{1}:{2}:{3} >{4}", o.ID.ToString(), o.date.ToString(Const.DATE_FORMAT), o.GiveOrder, o.ForePerson, o.estr);
+                
+                string s = string.Format("{0}:\t[{1}] > {2}", o.ID.ToString(), o.date.ToString(Const.DATE_FORMAT), o.estr);
                 listBox1.Items.Add(s);
+                
             }
-
+            
+            
             //Подсчет Всего распоряжений
             dTable = SQL.Query("SELECT count(*) AS 'count' FROM `order`");
             label6.Text = dTable.Rows[0]["count"].ToString();
@@ -68,7 +74,7 @@ namespace WorkOrder
             foreach (Order o in list)
             {
 
-                string s = string.Format("{0}:\t{1}:{2}:{3} >{4}", o.ID.ToString(), o.date.ToString(Const.DATE_FORMAT), o.GiveOrder, o.ForePerson, o.estr);
+                string s = string.Format("{0}:\t[{1}] > {2}", o.ID.ToString(), o.date.ToString(Const.DATE_FORMAT), o.estr);
                 listBox1.Items.Add(s);
             }
             label7.Text = listBox1.Items.Count.ToString();
@@ -77,11 +83,11 @@ namespace WorkOrder
 
         private void FrmArhive_Load(object sender, EventArgs e)
         {
-
+            
             OnRewriteListBox();
             isSelected = false;
             SelOrder = null;
-
+            
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,11 +115,11 @@ namespace WorkOrder
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE number != 0");
+            DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE number != 0 ORDER BY id DESC");
             List<Order> templist = new List<Order>();
             foreach (DataRow item in dTable.Rows)
             {
-                templist.Add(new Order(item));
+                templist.Add(new Order(item, true));
             }
             templist = oalib.ListOrder.ShowOrders(templist, dateFrom.SelectionStart, dateTo.SelectionStart);
             OnRewriteListBox(templist);

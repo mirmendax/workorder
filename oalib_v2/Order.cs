@@ -71,22 +71,26 @@ namespace oalib
             instr = o_v2.instr;
         }
 
-        public Order(DataRow data)
+        public Order(DataRow data, bool header=false)
         {
             ID = int.Parse(data["id"].ToString());
             number = int.Parse(data["number"].ToString());
             estr = data["estr"].ToString();
             date = DateTime.Parse(data["date"].ToString());
+            if (!header)
+            {
+                DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE id=" + data["giveorder"].ToString());
+                GiveOrder = new Emp(dTable.Rows[0]);
 
-            DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE id=" + data["giveorder"].ToString());
-            GiveOrder = new Emp(dTable.Rows[0]);
+                dTable = SQL.Query("SELECT * FROM 'emp' WHERE id=" + data["foreperson"].ToString());
+                ForePerson = new Emp(dTable.Rows[0]);
 
-            dTable = SQL.Query("SELECT * FROM 'emp' WHERE id=" + data["foreperson"].ToString());
-            ForePerson = new Emp(dTable.Rows[0]);
-
-            brigada = SQL.JSONToTeam(data["team"].ToString());
-            instr = data["instr"].ToString();
+                brigada = SQL.JSONToTeam(data["team"].ToString());
+                instr = data["instr"].ToString();
+            }
         }
+
+        
 
         public Order(string _estr, DateTime _date, Emp _gorder, Emp _fperson, List<Emp> _brig, string _instr)
         {
