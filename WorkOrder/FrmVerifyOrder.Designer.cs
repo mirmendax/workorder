@@ -36,11 +36,9 @@
             this.brglbl = new System.Windows.Forms.Label();
             this.instlbl = new System.Windows.Forms.Label();
             this.verifybtn = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.datelbl = new System.Windows.Forms.Label();
             this.delordbtn = new System.Windows.Forms.Button();
-            this.numberTBox = new System.Windows.Forms.NumericUpDown();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.numberTBox)).BeginInit();
             this.SuspendLayout();
             // 
             // estrlbl
@@ -100,13 +98,20 @@
             this.verifybtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.verifybtn.ImageIndex = 1;
             this.verifybtn.ImageList = this.imageList1;
-            this.verifybtn.Location = new System.Drawing.Point(136, 237);
+            this.verifybtn.Location = new System.Drawing.Point(62, 237);
             this.verifybtn.Name = "verifybtn";
             this.verifybtn.Size = new System.Drawing.Size(137, 43);
             this.verifybtn.TabIndex = 6;
             this.verifybtn.Text = "Подтвердить";
             this.verifybtn.UseVisualStyleBackColor = true;
             this.verifybtn.Click += new System.EventHandler(this.verifybtn_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "17.png");
+            this.imageList1.Images.SetKeyName(1, "18.png");
             // 
             // datelbl
             // 
@@ -125,7 +130,7 @@
             this.delordbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.delordbtn.ImageIndex = 0;
             this.delordbtn.ImageList = this.imageList1;
-            this.delordbtn.Location = new System.Drawing.Point(292, 237);
+            this.delordbtn.Location = new System.Drawing.Point(253, 237);
             this.delordbtn.Name = "delordbtn";
             this.delordbtn.Size = new System.Drawing.Size(137, 43);
             this.delordbtn.TabIndex = 8;
@@ -133,32 +138,11 @@
             this.delordbtn.UseVisualStyleBackColor = true;
             this.delordbtn.Click += new System.EventHandler(this.delordbtn_Click);
             // 
-            // numberTBox
-            // 
-            this.numberTBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numberTBox.Location = new System.Drawing.Point(12, 238);
-            this.numberTBox.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numberTBox.Name = "numberTBox";
-            this.numberTBox.Size = new System.Drawing.Size(100, 42);
-            this.numberTBox.TabIndex = 9;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "17.png");
-            this.imageList1.Images.SetKeyName(1, "18.png");
-            // 
             // FrmVerifyOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 292);
-            this.Controls.Add(this.numberTBox);
             this.Controls.Add(this.delordbtn);
             this.Controls.Add(this.datelbl);
             this.Controls.Add(this.verifybtn);
@@ -175,7 +159,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Подтверждение работы по распоряжению";
             this.Load += new System.EventHandler(this.FrmVerifyOrder_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numberTBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,7 +174,6 @@
         private System.Windows.Forms.Button verifybtn;
         private System.Windows.Forms.Label datelbl;
         private System.Windows.Forms.Button delordbtn;
-        private System.Windows.Forms.NumericUpDown numberTBox;
         private System.Windows.Forms.ImageList imageList1;
     }
 }

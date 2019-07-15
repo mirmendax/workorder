@@ -119,7 +119,7 @@ namespace oalib
                 string str_update = "";
                 if (table == "emp")
                 {
-                    str_update = "UPDATE 'emp' SET 'hide' = 0 " +
+                    str_update = "UPDATE 'emp' SET 'hide' = 1 " +
                     "WHERE id = " + id.ToString();
                 }
                 else
@@ -135,7 +135,6 @@ namespace oalib
                 if (Command.ExecuteNonQuery() > 0)
                 {
                     Conn.Close();
-
                     return true;
                 }
                 else
@@ -168,7 +167,6 @@ namespace oalib
             try
             {
                 SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
-
 
                 string str_update = "UPDATE 'emp' SET 'name' = @name, 'group' = @group, 'rGiveOrder' = @rGive, 'rForePerson' = @rFore " +
                     "WHERE id = " + id.ToString();
@@ -216,8 +214,7 @@ namespace oalib
             try
             {
                 SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
-
-
+                
                 string str_insert = "INSERT INTO `emp` ('name', 'group', 'rGiveOrder', 'rForePerson') VALUES (@name_emp, @group, @rGive, @rFore)";
 
                 SQLiteCommand Command = new SQLiteCommand(str_insert, Conn);

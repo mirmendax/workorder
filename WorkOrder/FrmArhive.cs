@@ -140,5 +140,10 @@ namespace WorkOrder
                 Hide();
             }
         }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            Hide();
+        }
     }
 }

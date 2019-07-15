@@ -11,13 +11,10 @@ namespace oalib
     public class EmpS
     {
 
-
         private List<Emp> employees;
         private static int r_GIVEORDER = 1;//Право отдающего распоряжение
         private static int r_FOREPERSON = 2;//Право производителя работ
         private static int r_OTHER = 5;//Член бригады
-
-
 
         public List<Emp> Employees { get => employees; set => employees = value; }
         public static int R_GIVEORDER { get => r_GIVEORDER; }
@@ -37,13 +34,13 @@ namespace oalib
             switch (rule)
             {
                 case 1:
-                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rGiveOrder` = 1 AND `hide` = 0");
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rGiveOrder` = 1 AND `hide` = 0 ORDER BY name");
                     break;
                 case 2:
-                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rForePerson` = 1 AND `hide` = 0");
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `rForePerson` = 1 AND `hide` = 0 ORDER BY name");
                     break;
                 case 5:
-                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `hide` = 0");
+                    dTable = SQL.Query("SELECT * FROM 'emp' WHERE `hide` = 0 ORDER BY name");
                     break;
                 default:
                     break;

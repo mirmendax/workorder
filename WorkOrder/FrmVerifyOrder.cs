@@ -26,7 +26,7 @@ namespace WorkOrder
             if (dTable.Rows.Count > 0)
             {
                 Order = new Order(dTable.Rows[0]);
-                numberTBox.Value = 0;
+                
                 if (Order != null)
                 {
                     estrlbl.Text = Order.estr;
@@ -48,7 +48,8 @@ namespace WorkOrder
         {
             try
             {
-                _number = (int)numberTBox.Value;
+                Random rnumber = new Random();
+                _number = rnumber.Next(1, 100);
                 if (ListOrder.VerifyOrder(Order.ID, _number))
                     Hide();
                 else

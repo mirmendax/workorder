@@ -207,9 +207,9 @@
             this.button4.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.button4.ImageKey = "17.png";
             this.button4.ImageList = this.imageList1;
-            this.button4.Location = new System.Drawing.Point(442, 496);
+            this.button4.Location = new System.Drawing.Point(442, 492);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(113, 33);
+            this.button4.Size = new System.Drawing.Size(130, 38);
             this.button4.TabIndex = 14;
             this.button4.Text = "Удалить архив";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -223,11 +223,11 @@
             this.button5.ImageList = this.imageList1;
             this.button5.Location = new System.Drawing.Point(831, 496);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(121, 31);
+            this.button5.Size = new System.Drawing.Size(125, 34);
             this.button5.TabIndex = 14;
             this.button5.Text = "Закрыть";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button4_Click);
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // FrmArhive
             // 

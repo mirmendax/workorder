@@ -37,7 +37,7 @@ namespace WorkOrder
                     Application.EnableVisualStyles();
                     AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new FrmRunLoad());
+                    //Application.Run(new FrmRunLoad());
                     Application.Run(new Form1());
                 }
                 else

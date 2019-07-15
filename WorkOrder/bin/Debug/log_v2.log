@@ -208,3 +208,5 @@ UNIQUE constraint failed: ac_instrd.text
    в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
    в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
    в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam))
+[15.07.19]Error DB: SQL logic error
+near "group": syntax error

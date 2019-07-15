@@ -39,6 +39,7 @@ namespace WorkOrder
                 for (int i = 0; i <= _emps.Count - 1; i++)
                 {
                     listBox1.Items.Add(_emps[i]);
+                    checkedListBox1.Items.Add(_emps[i]);
                 }
             }
         }
