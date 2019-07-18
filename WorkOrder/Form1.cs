@@ -387,7 +387,11 @@ namespace WorkOrder
 
         private void addchrbtn_Click(object sender, EventArgs e)
         {
-            fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS.R_OTHER);
+            List<Emp> list = new List<Emp>();
+            list = ListEmploy.EmployesOfRule(EmpS.R_OTHER);
+            list.Remove(Order.ForePerson);
+            list.Remove(Order.GiveOrder);
+            fEmployes.Emps = list;
             fEmployes.Location = new Point((Location.X + addchrbtn.Location.X),
                 (Location.Y + addchrbtn.Location.Y));
             fEmployes.ShowDialog();

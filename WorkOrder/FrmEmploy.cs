@@ -22,6 +22,7 @@ namespace WorkOrder
             set { _selEmp = value; }
         }
 
+        List<Emp> sellist = new List<Emp>();
 
 
         #endregion
@@ -33,6 +34,8 @@ namespace WorkOrder
         private void FrmEmploy_Load(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
+            checkedListBox1.Items.Clear();
+            
             SelEmp = null;
             if (_emps != null)
             {
@@ -59,5 +62,21 @@ namespace WorkOrder
             Hide();
         }
 
+        private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            int i = sellist.Count;
+            MessageBox.Show(i.ToString());
+        }
+
+        private void CheckedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            MessageBox.Show(e.NewValue.ToString());/// Вот истина!!!! идти по этому пути!!!!
+            
+        }
     }
 }
