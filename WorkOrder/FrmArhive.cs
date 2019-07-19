@@ -39,7 +39,7 @@ namespace WorkOrder
             ListOrder.Clear();
             
             // Заполнение listbox'а из данных таблицы 
-            DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE number != 0 ORDER BY id DESC LIMIT 30");
+            DataTable dTable = SQL.Query("SELECT * FROM 'order' WHERE number != 0 ORDER BY id DESC LIMIT "+Const.LIMIT_ORDER_ARHIV.ToString());
             //List<float> l_ms = new List<float>();
             foreach (DataRow item in dTable.Rows)
             {

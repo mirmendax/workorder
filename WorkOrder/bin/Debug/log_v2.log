@@ -210,3 +210,69 @@ UNIQUE constraint failed: ac_instrd.text
    в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam))
 [15.07.19]Error DB: SQL logic error
 near "group": syntax error
+[19.07.19]Error DB: SQL logic error
+near "%": syntax error
+[19.07.19]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (System.InvalidOperationException: Коллекция была изменена; невозможно выполнить операцию перечисления.
+   в System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   в System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   в System.Collections.Generic.List`1.Enumerator.MoveNext()
+   в WorkOrder.FrmEmploy.FrmEmploy_Load(Object sender, EventArgs e) в C:\Work\workorder\WorkOrder\FrmEmploy.cs:строка 81
+   в System.Windows.Forms.Form.OnLoad(EventArgs e)
+   в System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   в System.Windows.Forms.Control.set_Visible(Boolean value)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.RunDialog(Form form)
+   в System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   в System.Windows.Forms.Form.ShowDialog()
+   в WorkOrder.Form1.addchrbtn_Click(Object sender, EventArgs e) в C:\Work\workorder\WorkOrder\Form1.cs:строка 398
+   в System.Windows.Forms.Control.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   в System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   в System.Windows.Forms.Button.WndProc(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   в System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   в System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.Run(Form mainForm)
+   в WorkOrder.Program.Main() в C:\Work\workorder\WorkOrder\Program.cs:строка 41)
+[19.07.19]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (System.InvalidOperationException: Коллекция была изменена; невозможно выполнить операцию перечисления.
+   в System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   в System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   в System.Collections.Generic.List`1.Enumerator.MoveNext()
+   в WorkOrder.FrmEmploy.FrmEmploy_Load(Object sender, EventArgs e) в C:\Work\workorder\WorkOrder\FrmEmploy.cs:строка 85
+   в System.Windows.Forms.Form.OnLoad(EventArgs e)
+   в System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   в System.Windows.Forms.Control.set_Visible(Boolean value)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.RunDialog(Form form)
+   в System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   в System.Windows.Forms.Form.ShowDialog()
+   в WorkOrder.Form1.addchrbtn_Click(Object sender, EventArgs e) в C:\Work\workorder\WorkOrder\Form1.cs:строка 398
+   в System.Windows.Forms.Control.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnClick(EventArgs e)
+   в System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   в System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   в System.Windows.Forms.Control.WndProc(Message& m)
+   в System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   в System.Windows.Forms.Button.WndProc(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+   в System.Windows.Forms.UnsafeNativeMethods.DispatchMessageW(MSG& msg)
+   в System.Windows.Forms.Application.ComponentManager.System.Windows.Forms.UnsafeNativeMethods.IMsoComponentManager.FPushMessageLoop(IntPtr dwComponentID, Int32 reason, Int32 pvLoopData)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+   в System.Windows.Forms.Application.Run(Form mainForm)
+   в WorkOrder.Program.Main() в C:\Work\workorder\WorkOrder\Program.cs:строка 41)

@@ -392,21 +392,27 @@ namespace WorkOrder
             list.Remove(Order.ForePerson);
             list.Remove(Order.GiveOrder);
             fEmployes.Emps = list;
+            fEmployes.SelList = Order.brigada;
             fEmployes.Location = new Point((Location.X + addchrbtn.Location.X),
                 (Location.Y + addchrbtn.Location.Y));
             fEmployes.ShowDialog();
-            if (fEmployes.SelEmp != null)
+            
+            //if (fEmployes.SelEmp != null)
+            //{
+            //    if (Order.brigada.Count < 4)
+            //        if (!DublEmpOfOrder(fEmployes.SelEmp))
+            //        {
+
+            //            Order.brigada.Add(fEmployes.SelEmp);
+
+
+            //        }
+            //        else MessageBox.Show(Const.ERR_DUPLECATE_EMP);
+            //    else MessageBox.Show(Const.BR_OUT_DIAPOSON);
+            //}
+            if (fEmployes.SelList.Count > 0)
             {
-                if (Order.brigada.Count < 4)
-                    if (!DublEmpOfOrder(fEmployes.SelEmp))
-                    {
-
-                        Order.brigada.Add(fEmployes.SelEmp);
-
-
-                    }
-                    else MessageBox.Show(Const.ERR_DUPLECATE_EMP);
-                else MessageBox.Show(Const.BR_OUT_DIAPOSON);
+                Order.brigada = fEmployes.SelList;
             }
             onRewrite();
 

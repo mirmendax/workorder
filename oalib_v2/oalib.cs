@@ -18,7 +18,7 @@ namespace oalib
         public const string ERR_DUPLECATE_EMP = "Такой работник уже есть в бригаде!";
         public const string BR_OUT_DIAPOSON = "В бригаде достаточно работников!";
         public const string DOP_INSTR = "Другие указания по характеру и месту работы: ";
-
+        public const int    LIMIT_ORDER_ARHIV = 30;
 
     }
 
@@ -423,7 +423,7 @@ namespace oalib
     [Serializable]
     public class Log
     {
-
+        public const bool IS_DEBUG = true;
         /// <summary>
         /// Запись журнала ошибок
         /// </summary>
@@ -439,7 +439,8 @@ namespace oalib
 
             addlog.WriteLine("[" + DateTime.Now.ToString(Const.DATE_FORMAT) + "]" + sLog);
             addlog.Close();
-            MessageBox.Show(sLog);
+            if (IS_DEBUG)
+                MessageBox.Show(sLog);
         }
 
 
