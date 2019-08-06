@@ -44,6 +44,8 @@ namespace oalib
         /// </summary>
         public string instr = string.Empty;
 
+        public string tech = string.Empty;
+
 
         public override bool Equals(object obj)//????????? ПРОВЕРИТЬ ?????
         {
@@ -69,6 +71,7 @@ namespace oalib
             ForePerson = o_v2.ForePerson;
             brigada = o_v2.brigada;
             instr = o_v2.instr;
+            tech = o_v2.tech;
         }
 
         public Order(DataRow data, bool header=false)
@@ -87,12 +90,13 @@ namespace oalib
 
                 brigada = SQL.JSONToTeam(data["team"].ToString());
                 instr = data["instr"].ToString();
+                tech = data["tech"].ToString();
             }
         }
 
         
 
-        public Order(string _estr, DateTime _date, Emp _gorder, Emp _fperson, List<Emp> _brig, string _instr)
+        public Order(string _estr, DateTime _date, Emp _gorder, Emp _fperson, List<Emp> _brig, string _instr, string _tech)
         {
             ID = 0;
             number = 0;
@@ -102,6 +106,7 @@ namespace oalib
             ForePerson = _fperson;
             brigada = _brig;
             instr = _instr;
+            tech = _tech;
         }
 
     }

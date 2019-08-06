@@ -23,8 +23,9 @@ namespace WorkOrder
         private AutoCompleteStringCollection _ACS_estr = new AutoCompleteStringCollection();
         private AutoCompleteStringCollection _ACS_instr = new AutoCompleteStringCollection();
         private AutoCompleteStringCollection _ACS_dop_instr = new AutoCompleteStringCollection();
-        private BinaryFormatter _data_ACS = new BinaryFormatter();
-        private FileStream _file;
+        private AutoCompleteStringCollection _ACS_tech = new AutoCompleteStringCollection();
+       
+
         private bool Remove_br = false;
 
         private NotifyIcon iconTray;
@@ -32,7 +33,7 @@ namespace WorkOrder
         private EmpS ListEmploy = new EmpS();
         private List<Order> NotVerOrder = new List<Order>();
         private Order Order = new Order();
-        private List<Data> Data_ACS = new List<Data>();
+
 
 
 
@@ -44,28 +45,36 @@ namespace WorkOrder
             _ACS_estr.Clear();
             _ACS_instr.Clear();
             _ACS_dop_instr.Clear();
-            DataTable dT_estr = SQL.Query("SELECT * FROM 'ac_estr'");
-            foreach (DataRow item in dT_estr.Rows)
+            DataTable dT_acs = SQL.Query("SELECT * FROM 'ac_estr'");
+            foreach (DataRow item in dT_acs.Rows)
             {
                 string str = item["text"].ToString();
                 if (str != "")
                     _ACS_estr.Add(str);
             }
 
-            dT_estr = SQL.Query("SELECT * FROM 'ac_instr'");
-            foreach (DataRow item in dT_estr.Rows)
+            dT_acs = SQL.Query("SELECT * FROM 'ac_instr'");
+            foreach (DataRow item in dT_acs.Rows)
             {
                 string str = item["text"].ToString();
                 if (str != "")
                     _ACS_instr.Add(str);
             }
 
-            dT_estr = SQL.Query("SELECT * FROM 'ac_instrd'");
-            foreach (DataRow item in dT_estr.Rows)
+            dT_acs = SQL.Query("SELECT * FROM 'ac_instrd'");
+            foreach (DataRow item in dT_acs.Rows)
             {
                 string str = item["text"].ToString();
                 if (str != "")
                     _ACS_dop_instr.Add(str);
+            }
+
+            dT_acs = SQL.Query("SELECT * FROM 'ac_tech'");
+            foreach (DataRow item in dT_acs.Rows)
+            {
+                string str = item["text"].ToString();
+                if (str != "")
+                    _ACS_tech.Add(str);
             }
 
 
@@ -78,6 +87,7 @@ namespace WorkOrder
             {
                 dop_instrTBox.AutoCompleteMode = AutoCompleteMode.None;
             }
+            tech_TBox.AutoCompleteCustomSource = _ACS_tech;
 
         }
 
@@ -149,7 +159,7 @@ namespace WorkOrder
         /// <param name="instr">Иструктаж</param>
         /// <param name="dop_instr">Другие указания</param>
         /// <returns>true если успешно введены</returns>
-        public bool AddOrder(Emp giveorder, Emp foreperson, List<Emp> Team, string date, string estr, string instr, string dop_instr)
+        public bool AddOrder(Emp giveorder, Emp foreperson, List<Emp> Team, string date, string estr, string instr, string dop_instr, string tech)
         {
             bool result = false;
             /*УДАЛИТЬ*/
@@ -200,36 +210,38 @@ namespace WorkOrder
                     excel.SetValue("I28", Team[2].ToString());
                 if (Team.Count > 3 && Team[3] != null)
                     excel.SetValue("I30", Team[3].ToString());
-                if (instr.Length > 70)
-                {
-                    string[] strArray1 = instr.Split(Convert.ToChar(" "));
-                    int index1 = 0;
-                    string[] strArray2 = new string[4]
-          {
-            "",
-            "",
-            "",
-            ""
-          };
-                    foreach (string str in strArray1)
-                    {
-                        string[] strArray3;
-                        int index2;
-                        (strArray3 = strArray2)[(int)(index2 = (int)index1)] = strArray3[index2] + str + " ";
-                        if (strArray2[index1].Length > 70)
-                            ++index1;
-                    }
-                    if (strArray2[0].Length != 0)
-                        excel.SetValue("G33", strArray2[0]);
-                    if (strArray2[1].Length != 0)
-                        excel.SetValue("G34", strArray2[1]);
-                    if (strArray2[2].Length != 0)
-                        excel.SetValue("G35", strArray2[2]);
-                    if (strArray2[3].Length == 0)
-                        excel.SetValue("G36", strArray2[3]);
-                }
-                else
-                    excel.SetValue("G33", instr);
+                //      if (instr.Length > 70)
+                //      {
+                //          string[] strArray1 = instr.Split(Convert.ToChar(" "));
+                //          int index1 = 0;
+                //          string[] strArray2 = new string[4]
+                //{
+                //  "",
+                //  "",
+                //  "",
+                //  ""
+                //};
+                //          foreach (string str in strArray1)
+                //          {
+                //              string[] strArray3;
+                //              int index2;
+                //              (strArray3 = strArray2)[(int)(index2 = (int)index1)] = strArray3[index2] + str + " ";
+                //              if (strArray2[index1].Length > 70)
+                //                  ++index1;
+                //          }
+                //          if (strArray2[0].Length != 0)
+                //              excel.SetValue("G33", strArray2[0]);
+                //          if (strArray2[1].Length != 0)
+                //              excel.SetValue("G34", strArray2[1]);
+                //          if (strArray2[2].Length != 0)
+                //              excel.SetValue("G35", strArray2[2]);
+                //          if (strArray2[3].Length == 0)
+                //              excel.SetValue("G36", strArray2[3]);
+                //      }
+                //      else
+                //          excel.SetValue("G33", instr);
+                excel.SetValue("G36", instr);
+                excel.SetValue("G33", tech);
                 excel.SetValue("C45", Const.DOP_INSTR + dop_instr);
                 result = true;
             }
@@ -252,6 +264,7 @@ namespace WorkOrder
             forePersonlbl.Text = Order.ForePerson.ToString();
             listBox1.Items.Clear();
             ordercountlbl.Text = ListOrder.CountOrder.ToString();
+            tech_TBox.Text = Order.tech;
             for (int i = 0; i <= Order.brigada.Count - 1; i++)
             {
                 listBox1.Items.Add(Order.brigada[i].ToString());
@@ -296,7 +309,7 @@ namespace WorkOrder
 
             fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS.R_GIVEORDER); //Инициализация формы с правом отдающего распоряжение
             fEmployes.Location = new Point((Location.X + gOrderbtn.Location.X), (Location.Y + gOrderbtn.Location.Y));
-
+            fEmployes.Type_rule = TYPE_RULE.Give;
             fEmployes.ShowDialog();
             if (fEmployes.SelEmp != null)
             {
@@ -327,7 +340,7 @@ namespace WorkOrder
         {
             fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS.R_FOREPERSON);
             fEmployes.Location = new Point((Location.X + forePbtn.Location.X), (Location.Y + forePbtn.Location.Y));
-
+            fEmployes.Type_rule = TYPE_RULE.Fore;
             fEmployes.ShowDialog();
 
             if (fEmployes.SelEmp != null)
@@ -355,8 +368,9 @@ namespace WorkOrder
             Order.estr = estrTBox.Text;
             Order.instr = instrTBox.Text;
             string d_instr = dop_instrTBox.Text;
+            Order.tech = tech_TBox.Text;
             //Data_ACS.Add(new Data_v2(Order.estr, Order.instr, d_instr));
-            SQL.InsertAC(new Data(Order.estr, Order.instr, d_instr));
+            SQL.InsertAC(new Data(Order.estr, Order.instr, d_instr, Order.tech));
             //LoadACS();
             if (Order.estr != "" && Order.instr != "")
             {
@@ -366,7 +380,7 @@ namespace WorkOrder
                     if (Order.brigada.Count > 0)
                     {
                         if (AddOrder(Order.GiveOrder, Order.ForePerson, Order.brigada,
-                            Order.date.ToString(Const.DATE_FORMAT), Order.estr, Order.instr, d_instr))
+                            Order.date.ToString(Const.DATE_FORMAT), Order.estr, Order.instr, d_instr, Order.tech))
                         {
                             ListOrder.AddOrder(Order);
 
@@ -378,11 +392,11 @@ namespace WorkOrder
                         }
 
                     }
-                    else MessageBox.Show("Добавьте одного члена бригады. ");
+                    else MessageBox.Show(Const.ERR_NO_TEAM);
                 }
-                else MessageBox.Show("Нет отдающего распоряжения или производителя работ.");
+                else MessageBox.Show(Const.ERR_NO_GIVE_OR_FORE);
             }
-            else MessageBox.Show("Нет задания или мер ТБ.");
+            else MessageBox.Show(Const.ERR_NO_ESTR_OR_INSTR);
         }
 
         private void addchrbtn_Click(object sender, EventArgs e)
@@ -393,10 +407,11 @@ namespace WorkOrder
             list.Remove(Order.GiveOrder);
             fEmployes.Emps = list;
             fEmployes.SelList = Order.brigada;
+            fEmployes.Type_rule = TYPE_RULE.Other;
             fEmployes.Location = new Point((Location.X + addchrbtn.Location.X),
                 (Location.Y + addchrbtn.Location.Y));
             fEmployes.ShowDialog();
-            
+
             //if (fEmployes.SelEmp != null)
             //{
             //    if (Order.brigada.Count < 4)
@@ -410,8 +425,10 @@ namespace WorkOrder
             //        else MessageBox.Show(Const.ERR_DUPLECATE_EMP);
             //    else MessageBox.Show(Const.BR_OUT_DIAPOSON);
             //}
+            
             if (fEmployes.SelList.Count > 0)
             {
+                
                 Order.brigada = fEmployes.SelList;
             }
             onRewrite();
@@ -548,10 +565,6 @@ namespace WorkOrder
             Order.instr = instrTBox.Text;
         }
 
-        private void Button3_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 
 }

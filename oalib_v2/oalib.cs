@@ -15,11 +15,19 @@ namespace oalib
         public const string DATE_FORMAT = "dd.MM.yy";
         public const string FILE_LOG = "log_v2.log";
         public const string ABOUT_FORMAT = "WorkOrder {0} Programming [MIR] Mendax (c) 2006-2017// СТСУ уч. ТАиВ";
-        public const string ERR_DUPLECATE_EMP = "Такой работник уже есть в бригаде!";
-        public const string BR_OUT_DIAPOSON = "В бригаде достаточно работников!";
+
+        public const bool   IS_DEBUG = true;
+
         public const string DOP_INSTR = "Другие указания по характеру и месту работы: ";
+
         public const int    LIMIT_ORDER_ARHIV = 30;
 
+        //Error
+        public const string ERR_NO_TEAM = "Добавьте одного члена бригады.";
+        public const string ERR_NO_GIVE_OR_FORE = "Нет отдающего распоряжения или производителя работ.";
+        public const string ERR_DUPLECATE_EMP = "Такой работник уже есть в бригаде!";
+        public const string ERR_BR_OUT_DIAPOSON = "В бригаде достаточно работников!";
+        public const string ERR_NO_ESTR_OR_INSTR = "Нет задания или краткого инструктажа.";
     }
 
     public class Tools
@@ -318,6 +326,26 @@ namespace oalib
                     }
 
                 }
+                if (data.tech != "")
+                {
+                    //Проверка на совпадение в базе (ac_instrd) по dop_instr
+                    str_select = "SELECT count(*) AS 'count' FROM `ac_tech` WHERE text = '" + data.tech + "'";
+                    dTable = new DataTable();
+                    adapter = new SQLiteDataAdapter(str_select, Conn);
+                    Conn.Open();
+                    adapter.Fill(dTable);
+                    Conn.Close();
+                    if (dTable.Rows[0]["count"].ToString() == "0")
+                    {
+                        str_insert = "INSERT INTO 'ac_tech' (text) VALUES (@text)";
+                        SQLiteCommand Command = new SQLiteCommand(str_insert, Conn);
+                        Command.Parameters.AddWithValue("@text", data.tech);
+                        Conn.Open();
+                        Command.ExecuteNonQuery();
+                        Conn.Close();
+                    }
+
+                }
                 return true;
             }
             catch (SQLiteException ex)
@@ -345,8 +373,8 @@ namespace oalib
                 SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
 
 
-                string str_insert = "INSERT INTO `order` ('estr', 'date', 'giveorder', 'foreperson', 'team', 'instr' ) " +
-                    "VALUES (@estr, @date, @give, @fore, @team, @instr)";
+                string str_insert = "INSERT INTO `order` ('estr', 'date', 'giveorder', 'foreperson', 'team', 'instr', 'tech' ) " +
+                    "VALUES (@estr, @date, @give, @fore, @team, @instr, @tech)";
 
                 SQLiteCommand Command = new SQLiteCommand(str_insert, Conn);
                 Command.Parameters.AddWithValue("@estr", data.estr);
@@ -355,6 +383,7 @@ namespace oalib
                 Command.Parameters.AddWithValue("@fore", data.ForePerson.ID);
                 Command.Parameters.AddWithValue("@team", TeamToJSON(data.brigada));
                 Command.Parameters.AddWithValue("@instr", data.instr);
+                Command.Parameters.AddWithValue("@tech", data.tech);
                 Conn.Open();
                 if (Command.ExecuteNonQuery() > 0)
                 {
@@ -423,7 +452,7 @@ namespace oalib
     [Serializable]
     public class Log
     {
-        public const bool IS_DEBUG = true;
+        
         /// <summary>
         /// Запись журнала ошибок
         /// </summary>
@@ -437,9 +466,9 @@ namespace oalib
             }
             StreamWriter addlog = File.AppendText(Const.FILE_LOG);
 
-            addlog.WriteLine("[" + DateTime.Now.ToString(Const.DATE_FORMAT) + "]" + sLog);
+            addlog.WriteLine("[" + DateTime.Now.ToString("u") + "]" + sLog);
             addlog.Close();
-            if (IS_DEBUG)
+            if (Const.IS_DEBUG)
                 MessageBox.Show(sLog);
         }
 

@@ -16,9 +16,10 @@ namespace WorkOrder
     }
     public partial class FrmEmploy : Form
     {
-        #region Data(Emps_v2 and Emp_v2)
+        #region Data(Emps and Emp)
         private List<Emp> _emps = new List<Emp>();
         private Emp _selEmp = new Emp();
+        
 
         public List<Emp> Emps
         {
@@ -31,12 +32,15 @@ namespace WorkOrder
             set { _selEmp = value; }
         }
 
-
+        
 
         public List<Emp> SelList = new List<Emp>();
         public TYPE_RULE Type_rule = new TYPE_RULE();
         private int MaxCountList = 0;
         #endregion
+
+        private int countSelected = 0;
+
 
         private string WithName(int index)
         {
@@ -58,19 +62,25 @@ namespace WorkOrder
             {
                 case TYPE_RULE.Give:
                     MaxCountList = 1;
+                    listBox1.Visible = true;
+                    checkedListBox1.Visible = false;
                     break;
                 case TYPE_RULE.Fore:
                     MaxCountList = 1;
+                    listBox1.Visible = true;
+                    checkedListBox1.Visible = false;
                     break;
                 case TYPE_RULE.Other:
                     MaxCountList = 4;
+                    listBox1.Visible = false;
+                    checkedListBox1.Visible = true;
                     break;
                 default:
                     break;
             }
             listBox1.Items.Clear();
             checkedListBox1.Items.Clear();
-            
+
             SelEmp = null;
             if (_emps != null)
             {
@@ -78,21 +88,25 @@ namespace WorkOrder
                 {
                     listBox1.Items.Add(_emps[i]);
                     checkedListBox1.Items.Add(_emps[i]);
-                    
+
                 }
+                List<int> indexSelected = new List<int>();
                 for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 {
                     foreach (var item in SelList)
                     {
                         if (item.ToString() == checkedListBox1.Items[i].ToString())
                         {
-                            checkedListBox1.SetItemChecked(i, true);
+                            indexSelected.Add(i);
                         }
                     }
-            
-
-
                 }
+                SelList.Clear();
+                for (int i = 0; i < indexSelected.Count; i++)
+                {
+                    checkedListBox1.SetItemChecked(indexSelected[i], true);
+                }
+                
             }
             
         }
@@ -114,17 +128,11 @@ namespace WorkOrder
 
         private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            countSelected = checkedListBox1.CheckedItems.Count;
+            label3.Text = countSelected.ToString()+" из 4";
         }
 
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            label1.Text = "";
-            foreach(Emp item in SelList)
-            {
-                label1.Text += item.ID.ToString() + "\t" + item.ToString() + "\n";
-            }
-        }
+       
 
         private void CheckedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
@@ -137,7 +145,18 @@ namespace WorkOrder
                 if (dTable.Rows.Count == 1)
                 {
                     emp = new Emp(dTable.Rows[0]);
-                    SelList.Add(emp);
+                    if (countSelected == MaxCountList)
+                    {
+                        MessageBox.Show(Const.ERR_BR_OUT_DIAPOSON);
+                        e.NewValue = CheckState.Unchecked;
+                    }
+                    else
+                    {
+                        SelList.Add(emp);
+                        
+                    }
+                    
+                    
                 }
                 else new Log("Fail. Count rows: "+dTable.Rows.Count.ToString() );
             } 
@@ -152,6 +171,7 @@ namespace WorkOrder
                 }
                 else new Log("Fail. Count rows: " + dTable.Rows.Count.ToString());
             }
+            
             
         }
     }

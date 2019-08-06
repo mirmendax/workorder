@@ -66,6 +66,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.dop_instrTBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tech_TBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -77,7 +79,7 @@
             this.aboutlabel.AutoSize = true;
             this.aboutlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.aboutlabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.aboutlabel.Location = new System.Drawing.Point(122, 639);
+            this.aboutlabel.Location = new System.Drawing.Point(122, 701);
             this.aboutlabel.Name = "aboutlabel";
             this.aboutlabel.Size = new System.Drawing.Size(40, 13);
             this.aboutlabel.TabIndex = 0;
@@ -344,9 +346,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 467);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(9, 465);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(138, 13);
+            this.label3.Size = new System.Drawing.Size(158, 15);
             this.label3.TabIndex = 32;
             this.label3.Text = "Содержание инструктажа";
             // 
@@ -366,7 +369,7 @@
             this.addOrderbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addOrderbtn.ImageIndex = 5;
             this.addOrderbtn.ImageList = this.imageList1;
-            this.addOrderbtn.Location = new System.Drawing.Point(9, 559);
+            this.addOrderbtn.Location = new System.Drawing.Point(9, 621);
             this.addOrderbtn.Name = "addOrderbtn";
             this.addOrderbtn.Size = new System.Drawing.Size(623, 29);
             this.addOrderbtn.TabIndex = 34;
@@ -481,7 +484,7 @@
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.ImageIndex = 1;
             this.button2.ImageList = this.imageList1;
-            this.button2.Location = new System.Drawing.Point(9, 594);
+            this.button2.Location = new System.Drawing.Point(9, 656);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(623, 29);
             this.button2.TabIndex = 40;
@@ -493,7 +496,7 @@
             // 
             this.dop_instrTBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.dop_instrTBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.dop_instrTBox.Location = new System.Drawing.Point(9, 522);
+            this.dop_instrTBox.Location = new System.Drawing.Point(9, 578);
             this.dop_instrTBox.Name = "dop_instrTBox";
             this.dop_instrTBox.Size = new System.Drawing.Size(623, 20);
             this.dop_instrTBox.TabIndex = 42;
@@ -501,17 +504,38 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 506);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(6, 560);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(251, 13);
+            this.label7.Size = new System.Drawing.Size(281, 15);
             this.label7.TabIndex = 41;
             this.label7.Text = "Другие указания по характеру и месту работы: ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(6, 504);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(165, 15);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "Технические мероприятия:";
+            // 
+            // tech_TBox
+            // 
+            this.tech_TBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tech_TBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tech_TBox.Location = new System.Drawing.Point(9, 522);
+            this.tech_TBox.Name = "tech_TBox";
+            this.tech_TBox.Size = new System.Drawing.Size(623, 20);
+            this.tech_TBox.TabIndex = 33;
+            this.tech_TBox.TextChanged += new System.EventHandler(this.instrTBox_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 661);
+            this.ClientSize = new System.Drawing.Size(644, 722);
             this.Controls.Add(this.dop_instrTBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button2);
@@ -521,7 +545,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.arhivebtn);
             this.Controls.Add(this.addOrderbtn);
+            this.Controls.Add(this.tech_TBox);
             this.Controls.Add(this.instrTBox);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.datelbl);
             this.Controls.Add(this.groupBox3);
@@ -592,6 +618,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox dop_instrTBox;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tech_TBox;
     }
 }
 
