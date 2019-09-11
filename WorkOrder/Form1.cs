@@ -101,7 +101,7 @@ namespace WorkOrder
 
         }
         /// <summary>
-        /// Проверка на повторяющихся работников
+        /// Проверка на повторяющихся работников (Уже не актуально)
         /// </summary>
         /// <param name="emp">Добовляемый работник</param>
         /// <returns>true если уже есть</returns>
@@ -158,6 +158,7 @@ namespace WorkOrder
         /// <param name="estr">Поручается</param>
         /// <param name="instr">Иструктаж</param>
         /// <param name="dop_instr">Другие указания</param>
+        /// <param name="tech">Технические мероприятия</param>
         /// <returns>true если успешно введены</returns>
         public bool AddOrder(Emp giveorder, Emp foreperson, List<Emp> Team, string date, string estr, string instr, string dop_instr, string tech)
         {
@@ -383,7 +384,6 @@ namespace WorkOrder
                             Order.date.ToString(Const.DATE_FORMAT), Order.estr, Order.instr, d_instr, Order.tech))
                         {
                             ListOrder.AddOrder(Order);
-
                             Order = new Order();
                             Order.date = DateTime.Today;
                             dop_instrTBox.Clear();

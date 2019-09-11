@@ -14,9 +14,11 @@ namespace oalib
         public const string DATA_FILE = "data.db";
         public const string DATE_FORMAT = "dd.MM.yy";
         public const string FILE_LOG = "log_v2.log";
-        public const string ABOUT_FORMAT = "WorkOrder {0} Programming [MIR] Mendax (c) 2006-2017// СТСУ уч. ТАиВ";
+        public const string ABOUT_FORMAT = "WorkOrder {0} Programming [MIR] Mendax (c) 2006-2019// СРЗАиМ уч. ТАиВ";
 
-        public const bool   IS_DEBUG = true;
+        public const string SQL_CONNECTION = "Data Source = "+DATA_FILE+"; Version = 3";
+
+        public const bool   IS_DEBUG = false;
 
         public const string DOP_INSTR = "Другие указания по характеру и месту работы: ";
 
@@ -49,13 +51,20 @@ namespace oalib
 
         }
     }
-
+    /// <summary>
+    /// Класс адаптер запросов в базу.
+    /// </summary>
     public class SQL
     {
+        /// <summary>
+        /// Версия
+        /// </summary>
+        /// <param name="program">???</param>
+        /// <returns></returns>
         public static string Version(string program)
         {
             string result = "";
-            DataTable dTable = SQL.Query("SELECT * FROM 'versions' WHERE name = '" + program + "'");
+            DataTable dTable = Query("SELECT * FROM 'versions' WHERE name = '" + program + "'");
             if (dTable.Rows.Count > 0)
                 result = dTable.Rows[0]["version"].ToString() + "." + dTable.Rows[0]["build"].ToString() + "";
 
@@ -112,7 +121,12 @@ namespace oalib
                 return result;
             }
         }
-
+        /// <summary>
+        /// Удаление записи из базы
+        /// </summary>
+        /// <param name="id">ИД записи для удаления</param>
+        /// <param name="table">таблица: если order то удаляется, если emp то значение hide этой записи присваивается 1</param>
+        /// <returns></returns>
         public static bool Delete(int id, string table)
         {
             bool result = false;
@@ -123,19 +137,17 @@ namespace oalib
             }
             try
             {
-                SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
+                SQLiteConnection Conn = new SQLiteConnection(Const.SQL_CONNECTION);
                 string str_update = "";
                 if (table == "emp")
                 {
-                    str_update = "UPDATE 'emp' SET 'hide' = 1 " +
+                    str_update = "UPDATE '" + table + "' SET 'hide' = 1 " +
                     "WHERE id = " + id.ToString();
                 }
                 else
                 {
                     str_update = "DELETE FROM '" + table + "' WHERE id = " + id.ToString();
                 }
-
-
 
                 SQLiteCommand Command = new SQLiteCommand(str_update, Conn);
 
@@ -174,7 +186,7 @@ namespace oalib
             }
             try
             {
-                SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
+                SQLiteConnection Conn = new SQLiteConnection(Const.SQL_CONNECTION);
 
                 string str_update = "UPDATE 'emp' SET 'name' = @name, 'group' = @group, 'rGiveOrder' = @rGive, 'rForePerson' = @rFore " +
                     "WHERE id = " + id.ToString();
@@ -221,7 +233,7 @@ namespace oalib
             }
             try
             {
-                SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
+                SQLiteConnection Conn = new SQLiteConnection(Const.SQL_CONNECTION);
                 
                 string str_insert = "INSERT INTO `emp` ('name', 'group', 'rGiveOrder', 'rForePerson') VALUES (@name_emp, @group, @rGive, @rFore)";
 
@@ -271,7 +283,7 @@ namespace oalib
                 DataTable dTable;
                 SQLiteDataAdapter adapter;
 
-                SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
+                SQLiteConnection Conn = new SQLiteConnection(Const.SQL_CONNECTION);
 
                 //Проверка на совпадение в базе (ac_estr) по estr
                 str_select = "SELECT count(*) AS 'count' FROM `ac_estr` WHERE text = '" + data.estr + "'";
@@ -370,7 +382,7 @@ namespace oalib
             }
             try
             {
-                SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
+                SQLiteConnection Conn = new SQLiteConnection(Const.SQL_CONNECTION);
 
 
                 string str_insert = "INSERT INTO `order` ('estr', 'date', 'giveorder', 'foreperson', 'team', 'instr', 'tech' ) " +
@@ -419,7 +431,7 @@ namespace oalib
             }
             try
             {
-                SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
+                SQLiteConnection Conn = new SQLiteConnection(Const.SQL_CONNECTION);
                 Conn.Open();
 
                 DataTable dTable = new DataTable();
@@ -469,7 +481,9 @@ namespace oalib
             addlog.WriteLine("[" + DateTime.Now.ToString("u") + "]" + sLog);
             addlog.Close();
             if (Const.IS_DEBUG)
+#pragma warning disable CS0162 // Обнаружен недостижимый код
                 MessageBox.Show(sLog);
+#pragma warning restore CS0162 // Обнаружен недостижимый код
         }
 
 

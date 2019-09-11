@@ -30,7 +30,6 @@ namespace oalib
                 result.Add(temp);
             }
 
-
             return result;
         }
 
@@ -52,7 +51,6 @@ namespace oalib
             try
             {
                 SQLiteConnection Conn = new SQLiteConnection("Data Source = data.db; Version = 3");
-
 
                 string str_update = "UPDATE 'order' SET 'number' = @number WHERE id = @id";
 
