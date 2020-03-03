@@ -371,3 +371,9 @@ near "%": syntax error
    в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
    в System.Windows.Forms.Application.Run(Form mainForm)
    в WorkOrder.Program.Main() в C:\Work\workorder\WorkOrder\Program.cs:строка 41)
+[2020-03-03 20:32:12Z]Fail. Count rows: 3
+[2020-03-03 20:32:17Z]Fail. Count rows: 3
+[2020-03-03 20:39:49Z]Fail. Count rows: 2
+[2020-03-03 20:39:52Z]Fail. Count rows: 2
+[2020-03-03 20:41:07Z]Fail. Count rows: 2
+[2020-03-03 20:41:08Z]Fail. Count rows: 2

@@ -140,7 +140,7 @@ namespace WorkOrder
             if (e.NewValue == CheckState.Checked)
             {
                 
-                DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE name LIKE '%" + WithName(e.Index) + "%'");
+                DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE name LIKE '%" + WithName(e.Index) + "%' AND hide = 0");
                 Emp emp = new Emp();
                 if (dTable.Rows.Count == 1)
                 {
