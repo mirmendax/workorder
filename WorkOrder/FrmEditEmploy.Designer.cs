@@ -170,6 +170,7 @@
             // 
             // delbutton
             // 
+            this.delbutton.Enabled = false;
             this.delbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.delbutton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.delbutton.ImageIndex = 0;
