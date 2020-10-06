@@ -138,6 +138,7 @@ namespace oalib
             IEnumerable<Order> query = from o in data
                                        join t in dd on o.date equals t
                                        select o;
+            
             result = query.ToList();
             return result;
         }
