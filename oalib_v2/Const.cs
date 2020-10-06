@@ -19,9 +19,11 @@
         //Error
         public const string ERR_NO_TEAM = "Добавьте одного члена бригады.";
         public const string ERR_NO_GIVE_OR_FORE = "Нет отдающего распоряжения или производителя работ.";
-        public const string ERR_DUPLECATE_EMP = "Такой работник уже есть в бригаде!";
+        public const string ERR_DUPLICATE_EMP = "Такой работник уже есть в бригаде!";
         public const string ERR_BR_OUT_DIAPOSON = "В бригаде достаточно работников!";
         public const string ERR_NO_ESTR_OR_INSTR = "Нет задания или краткого инструктажа.";
+        public const string ERR_GIVEORDER_IS_TEAMORDER = "Выдающий наряд уже есть в списке членов бригады!";
+        public const string ERR_FOREPERSON_IS_TEAMORDER = "Производитель работ не может совмещать обязанности члена бригады!";
     }
 
 

@@ -106,9 +106,11 @@ namespace WorkOrder
                 {
                     checkedListBox1.SetItemChecked(indexSelected[i], true);
                 }
-                
+                countSelected = checkedListBox1.CheckedItems.Count;
+                label3.Text = countSelected.ToString() + " из 4";
             }
             
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

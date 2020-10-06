@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditEmploy));
-            this.listEmpLBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.nameTBox = new System.Windows.Forms.TextBox();
@@ -43,17 +42,9 @@
             this.abortButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.delbutton = new System.Windows.Forms.Button();
+            this.cListBox = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // listEmpLBox
-            // 
-            this.listEmpLBox.FormattingEnabled = true;
-            this.listEmpLBox.Location = new System.Drawing.Point(12, 12);
-            this.listEmpLBox.Name = "listEmpLBox";
-            this.listEmpLBox.Size = new System.Drawing.Size(286, 342);
-            this.listEmpLBox.TabIndex = 0;
-            this.listEmpLBox.SelectedIndexChanged += new System.EventHandler(this.listEmpLBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -150,9 +141,9 @@
             this.abortButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.abortButton.ImageIndex = 1;
             this.abortButton.ImageList = this.imageList1;
-            this.abortButton.Location = new System.Drawing.Point(503, 345);
+            this.abortButton.Location = new System.Drawing.Point(448, 415);
             this.abortButton.Name = "abortButton";
-            this.abortButton.Size = new System.Drawing.Size(122, 36);
+            this.abortButton.Size = new System.Drawing.Size(180, 36);
             this.abortButton.TabIndex = 12;
             this.abortButton.Text = "Закрыть";
             this.abortButton.UseVisualStyleBackColor = true;
@@ -162,11 +153,12 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label3.Location = new System.Drawing.Point(12, 357);
+            this.label3.Location = new System.Drawing.Point(12, 415);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 26);
+            this.label3.Size = new System.Drawing.Size(293, 39);
             this.label3.TabIndex = 13;
-            this.label3.Text = "* - Отдающий распоряжение\r\n# - Производитель работ";
+            this.label3.Text = "* - Отдающий распоряжение\r\n# - Производитель работ\r\nНеотмеченные работники не буд" +
+    "ут показаны в списках.";
             // 
             // delbutton
             // 
@@ -183,11 +175,21 @@
             this.delbutton.UseVisualStyleBackColor = true;
             this.delbutton.Click += new System.EventHandler(this.delbutton_Click);
             // 
+            // cListBox
+            // 
+            this.cListBox.FormattingEnabled = true;
+            this.cListBox.Location = new System.Drawing.Point(12, 12);
+            this.cListBox.Name = "cListBox";
+            this.cListBox.Size = new System.Drawing.Size(288, 394);
+            this.cListBox.TabIndex = 15;
+            this.cListBox.SelectedIndexChanged += new System.EventHandler(this.cListBox_SelectedIndexChanged);
+            // 
             // FrmEditEmploy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 398);
+            this.ClientSize = new System.Drawing.Size(640, 463);
+            this.Controls.Add(this.cListBox);
             this.Controls.Add(this.delbutton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.abortButton);
@@ -199,7 +201,6 @@
             this.Controls.Add(this.nameTBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listEmpLBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -215,8 +216,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listEmpLBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nameTBox;
@@ -229,5 +228,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button delbutton;
+        private System.Windows.Forms.CheckedListBox cListBox;
     }
 }

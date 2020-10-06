@@ -38,7 +38,7 @@ namespace oalib
         /// <summary>
         /// Список членов бригады
         /// </summary>
-        public List<Emp> brigada = new List<Emp>();
+        public List<Emp> teamOrder = new List<Emp>();
         /// <summary>
         /// Содержание инструктажа
         /// </summary>
@@ -69,7 +69,7 @@ namespace oalib
             date = o_v2.date;
             GiveOrder = o_v2.GiveOrder;
             ForePerson = o_v2.ForePerson;
-            brigada = o_v2.brigada;
+            teamOrder = o_v2.teamOrder;
             instr = o_v2.instr;
             tech = o_v2.tech;
         }
@@ -88,7 +88,7 @@ namespace oalib
                 dTable = SQL.Query("SELECT * FROM 'emp' WHERE id=" + data["foreperson"].ToString());
                 ForePerson = new Emp(dTable.Rows[0]);
 
-                brigada = SQL.JSONToTeam(data["team"].ToString());
+                teamOrder = SQL.JSONToTeam(data["team"].ToString());
                 instr = data["instr"].ToString();
                 tech = data["tech"].ToString();
             }
@@ -104,7 +104,7 @@ namespace oalib
             date = _date;
             GiveOrder = _gorder;
             ForePerson = _fperson;
-            brigada = _brig;
+            teamOrder = _brig;
             instr = _instr;
             tech = _tech;
         }

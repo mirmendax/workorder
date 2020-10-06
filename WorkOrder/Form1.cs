@@ -144,7 +144,7 @@ namespace WorkOrder
             Order = null;
             Order = new Order();
             Order.date = DateTime.Today;
-            Order.brigada.Clear();
+            Order.teamOrder.Clear();
             onRewrite();
 
         }
@@ -266,9 +266,9 @@ namespace WorkOrder
             listBox1.Items.Clear();
             ordercountlbl.Text = ListOrder.CountOrder.ToString();
             tech_TBox.Text = Order.tech;
-            for (int i = 0; i <= Order.brigada.Count - 1; i++)
+            for (int i = 0; i <= Order.teamOrder.Count - 1; i++)
             {
-                listBox1.Items.Add(Order.brigada[i].ToString());
+                listBox1.Items.Add(Order.teamOrder[i].ToString());
             }
             NotVerOrder = ListOrder.NotVerifydOrderList();
             if (NotVerOrder.Count != 0)
@@ -277,6 +277,7 @@ namespace WorkOrder
                 noverifyordlbl.Text = NotVerOrder.Count.ToString();
             }
             else notverifyordBox.Visible = false;
+            
         }
 
 
@@ -307,16 +308,16 @@ namespace WorkOrder
         /// <param name="e"></param>
         private void gOrderbtn_Click(object sender, EventArgs e)
         {
-
+            fEmployes = new FrmEmploy();
             fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS.R_GIVEORDER); //Инициализация формы с правом отдающего распоряжение
             fEmployes.Location = new Point((Location.X + gOrderbtn.Location.X), (Location.Y + gOrderbtn.Location.Y));
             fEmployes.Type_rule = TYPE_RULE.Give;
             fEmployes.ShowDialog();
             if (fEmployes.SelEmp != null)
             {
-                if (!DublEmpOfOrder(fEmployes.SelEmp))
+                if (!Order.WithAtTeam(fEmployes.SelEmp))
                     Order.GiveOrder = fEmployes.SelEmp;
-                else MessageBox.Show(Const.ERR_DUPLECATE_EMP);
+                else MessageBox.Show(Const.ERR_GIVEORDER_IS_TEAMORDER);
             }
             onRewrite();
         }
@@ -339,6 +340,7 @@ namespace WorkOrder
         /// <param name="e"></param>
         private void forePbtn_Click(object sender, EventArgs e)
         {
+            fEmployes = new FrmEmploy();
             fEmployes.Emps = ListEmploy.EmployesOfRule(EmpS.R_FOREPERSON);
             fEmployes.Location = new Point((Location.X + forePbtn.Location.X), (Location.Y + forePbtn.Location.Y));
             fEmployes.Type_rule = TYPE_RULE.Fore;
@@ -346,9 +348,9 @@ namespace WorkOrder
 
             if (fEmployes.SelEmp != null)
             {
-                if (!DublEmpOfOrder(fEmployes.SelEmp))
+                if (!Order.WithAtTeam(fEmployes.SelEmp))
                     Order.ForePerson = fEmployes.SelEmp;
-                else MessageBox.Show(Const.ERR_DUPLECATE_EMP);
+                else MessageBox.Show(Const.ERR_FOREPERSON_IS_TEAMORDER);
 
             }
             onRewrite();
@@ -378,9 +380,9 @@ namespace WorkOrder
                 if (Order.GiveOrder.Name != "" && Order.ForePerson.Name != "")
                 {
 
-                    if (Order.brigada.Count > 0)
+                    if (Order.teamOrder.Count > 0)
                     {
-                        if (AddOrder(Order.GiveOrder, Order.ForePerson, Order.brigada,
+                        if (AddOrder(Order.GiveOrder, Order.ForePerson, Order.teamOrder,
                             Order.date.ToString(Const.DATE_FORMAT), Order.estr, Order.instr, d_instr, Order.tech))
                         {
                             ListOrder.AddOrder(Order);
@@ -405,8 +407,9 @@ namespace WorkOrder
             list = ListEmploy.EmployesOfRule(EmpS.R_OTHER);
             list.Remove(Order.ForePerson);
             list.Remove(Order.GiveOrder);
+            fEmployes = new FrmEmploy();
             fEmployes.Emps = list;
-            fEmployes.SelList = Order.brigada;
+            fEmployes.SelList = Order.teamOrder;
             fEmployes.Type_rule = TYPE_RULE.Other;
             fEmployes.Location = new Point((Location.X + addchrbtn.Location.X),
                 (Location.Y + addchrbtn.Location.Y));
@@ -429,7 +432,7 @@ namespace WorkOrder
             if (fEmployes.SelList.Count > 0)
             {
                 
-                Order.brigada = fEmployes.SelList;
+                Order.teamOrder = fEmployes.SelList;
             }
             onRewrite();
 
@@ -444,7 +447,7 @@ namespace WorkOrder
                 int i = lb.SelectedIndex;
 
                 if (i != -1)
-                    Order.brigada.Remove(Order.brigada[i]);
+                    Order.teamOrder.Remove(Order.teamOrder[i]);
 
                 delchrbtn.Text = "-";
                 Remove_br = false;
@@ -463,7 +466,7 @@ namespace WorkOrder
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            Order.brigada.Clear();
+            Order.teamOrder.Clear();
             onRewrite();
         }
 

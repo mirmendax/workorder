@@ -13,6 +13,7 @@ namespace oalib
     /// </summary>
     public class SQL
     {
+
         /// <summary>
         /// Версия
         /// </summary>
@@ -112,6 +113,51 @@ namespace oalib
                 if (Command.ExecuteNonQuery() > 0)
                 {
                     Conn.Close();
+                    return true;
+                }
+                else
+                {
+                    Conn.Close();
+                    return result;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                new Log("Error insert DB: " + ex.Message);
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                new Log("Error Insert: " + ex.Message);
+                return result;
+            }
+        }
+        /// <summary>
+        /// Изменение видимости Работника
+        /// </summary>
+        /// <param name="id">ID работника</param>
+        /// <param name="mode">Видимость (true - видимый, false - не видимый)</param>
+        /// <returns></returns>
+        public static bool EditHideModeEmploy(int id, bool mode)
+        {
+            bool result = false;
+            if (!File.Exists(Const.DATA_FILE))
+            {
+                MessageBox.Show("База данных отсутсвует.");
+                return result;
+            }
+            try
+            {
+                SQLiteConnection Conn = new SQLiteConnection(Const.SQL_CONNECTION);
+                var str_query = $"UPDATE 'emp' SET 'hide' = {(mode ? '0' : '1')} WHERE id = {id}";
+                SQLiteCommand Command = new SQLiteCommand(str_query, Conn);
+
+                Conn.Open();
+                if (Command.ExecuteNonQuery() > 0)
+                {
+                    Conn.Close();
+
                     return true;
                 }
                 else
@@ -350,7 +396,7 @@ namespace oalib
                 Command.Parameters.AddWithValue("@date", data.date.ToString(Const.DATE_FORMAT));
                 Command.Parameters.AddWithValue("@give", data.GiveOrder.ID);
                 Command.Parameters.AddWithValue("@fore", data.ForePerson.ID);
-                Command.Parameters.AddWithValue("@team", TeamToJSON(data.brigada));
+                Command.Parameters.AddWithValue("@team", TeamToJSON(data.teamOrder));
                 Command.Parameters.AddWithValue("@instr", data.instr);
                 Command.Parameters.AddWithValue("@tech", data.tech);
                 Conn.Open();

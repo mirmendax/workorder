@@ -71,3 +71,17 @@
    в System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
    в System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
    в System.Threading.ThreadHelper.ThreadStart())
+[2020-10-06 10:22:28Z]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (System.IndexOutOfRangeException: Индекс находился вне границ массива.
+   в System.Windows.Forms.ImageList.ImageCollection.SetKeyName(Int32 index, String name)
+   в WorkOrder.Form1.InitializeComponent() в C:\Work\workorder\WorkOrder\Form1.Designer.cs:строка 141
+   в WorkOrder.Form1..ctor() в C:\Work\workorder\WorkOrder\Form1.cs:строка 97
+   в WorkOrder.Program.Main() в C:\Work\workorder\WorkOrder\Program.cs:строка 41)
+[2020-10-06 10:22:57Z]Имя:WorkOrder.exe
+Политики контекста отсутствуют.
+ (System.IndexOutOfRangeException: Индекс находился вне границ массива.
+   в System.Windows.Forms.ImageList.ImageCollection.SetKeyName(Int32 index, String name)
+   в WorkOrder.Form1.InitializeComponent() в C:\Work\workorder\WorkOrder\Form1.Designer.cs:строка 141
+   в WorkOrder.Form1..ctor() в C:\Work\workorder\WorkOrder\Form1.cs:строка 97
+   в WorkOrder.Program.Main() в C:\Work\workorder\WorkOrder\Program.cs:строка 41)

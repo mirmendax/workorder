@@ -35,9 +35,9 @@ namespace WorkOrder
                     foreprslbl.Text = Order.ForePerson.ToString();
                     datelbl.Text = Order.date.ToString(Const.DATE_FORMAT);
                     string s = string.Empty;
-                    for (int i = 0; i <= Order.brigada.Count - 1; i++)
+                    for (int i = 0; i <= Order.teamOrder.Count - 1; i++)
                     {
-                        s += Order.brigada[i].ToString() + "\n";
+                        s += Order.teamOrder[i].ToString() + "\n";
                     }
                     brglbl.Text = s;
                 }

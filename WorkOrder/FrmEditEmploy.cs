@@ -18,23 +18,38 @@ namespace WorkOrder
 
         public void OnRewriteListBox()
         {
-            List<Emp> list = new List<Emp>();
-            DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE hide = 0");
-            foreach (DataRow item in dTable.Rows)
-            {
-                Emp temp = new Emp(item);
-                list.Add(temp);
-            }
-
-            listEmpLBox.Items.Clear();
+            //System.Diagnostics.Debugger.Break();
+            ItemCheckEventHandler nullhandler = null;
+            nullhandler = (s, a) => { };
+            cListBox.ItemCheck -= ItemCheck;
+            //List<Emp> list = new List<Emp>();
+            DataTable dTable = SQL.Query("SELECT * FROM 'emp' ");
+            //listEmpLBox.Items.Clear();
+            cListBox.Items.Clear();
             const string gTrue = "*";
             const string fTrue = "#";
             const string False = "";
-            foreach (Emp item in list)
+            foreach (DataRow item in dTable.Rows)
             {
-                listEmpLBox.Items.Add(string.Format("{0}: {1}  {2}  {3}", item.ID.ToString(),
-                    item.ToString(), (item.RuleGiveOrder) ? gTrue : False, (item.RuleForePerson) ? fTrue : False));
+                Emp temp = new Emp(item);
+                var str = string.Format("{0}: {1}  {2}  {3}", temp.ID.ToString(),
+                   temp.ToString(), (temp.RuleGiveOrder) ? gTrue : False, (temp.RuleForePerson) ? fTrue : False);
+                //listEmpLBox.Items.Add(str);
+                var hidemode = false;
+                if (item["hide"].ToString() == "0")
+                {
+                    hidemode = true;
+                }
+                else
+                {
+                    hidemode = false;
+                }
+                cListBox.Items.Add(str, hidemode);
+                //list.Add(temp);
             }
+
+            
+            cListBox.ItemCheck += ItemCheck;
         }
 
         public void OnRewriteEmploy(Emp emp)
@@ -80,7 +95,7 @@ namespace WorkOrder
             if (nameTBox.Text != "" && groupBox.Value != 0)
             {
                 Emp editEmp = new Emp(nameTBox.Text, (int)groupBox.Value, rGiveOrderChBox.Checked, rForePersonChBox.Checked);
-                int id = Tools.IsID(listEmpLBox.SelectedItem.ToString());
+                int id = Tools.IsID(cListBox.SelectedItem.ToString());
                 if (id != 0)
                 {
                     SQL.Update(id, editEmp);
@@ -107,12 +122,42 @@ namespace WorkOrder
 
         private void delbutton_Click(object sender, EventArgs e)
         {
-            int id = Tools.IsID(listEmpLBox.SelectedItem.ToString());
+            int id = Tools.IsID(cListBox.SelectedItem.ToString());
             if (id != 0)
             {
                 SQL.Delete(id, "emp");
                 OnRewriteListBox();
                 OnRewriteEmploy(new Emp("", 2));
+            }
+        }
+
+        private void ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (cListBox.SelectedItem == null) return;
+
+            int id = Tools.IsID(cListBox.SelectedItem.ToString());
+            if (id == 0) return;
+            bool mode = true;
+            if (e.NewValue == CheckState.Checked)
+            {
+                mode = true;
+            }
+            if (e.NewValue == CheckState.Unchecked)
+            {
+                mode = false;
+            }
+            SQL.EditHideModeEmploy(id, mode);
+        }
+
+        private void cListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            int id = Tools.IsID(cListBox.SelectedItem.ToString());
+            if (id != 0)
+            {
+                DataTable dTable = SQL.Query("SELECT * FROM 'emp' WHERE `id`=" + id.ToString());
+                Emp temp = new Emp(dTable.Rows[0]);
+                OnRewriteEmploy(temp);
             }
         }
     }

@@ -18,3 +18,4 @@ C:\Users\mirme\Source\Repos\workorder\oalib_v2\obj\Debug\oalib.csproj.CopyComple
 C:\Users\mirme\Source\Repos\workorder\oalib_v2\obj\Debug\oalib.dll
 C:\Users\mirme\Source\Repos\workorder\oalib_v2\obj\Debug\oalib.pdb
 C:\Work\workorder\oalib_v2\obj\Debug\oalib.csproj.CoreCompileInputs.cache
+C:\Work\workorder\oalib_v2\obj\Debug\oalib.csprojAssemblyReference.cache
