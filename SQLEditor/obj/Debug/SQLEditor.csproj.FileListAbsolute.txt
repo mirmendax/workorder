@@ -15,3 +15,4 @@ C:\Work\workorder\SQLEditor\bin\Debug\System.Data.SQLite.dll.config
 C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.csproj.CopyComplete
 C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.exe
 C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.pdb
+C:\Work\workorder\SQLEditor\obj\Debug\SQLEditor.TableEmp.resources

@@ -107,3 +107,4 @@ C:\Users\mirme\Source\Repos\workorder\WorkOrder\obj\Debug\WorkOrder.csproj.Gener
 C:\Users\mirme\Source\Repos\workorder\WorkOrder\obj\Debug\WorkOrder.csproj.CopyComplete
 C:\Users\mirme\Source\Repos\workorder\WorkOrder\obj\Debug\WorkOrder.exe
 C:\Users\mirme\Source\Repos\workorder\WorkOrder\obj\Debug\WorkOrder.pdb
+C:\Work\workorder\WorkOrder\obj\Debug\WorkOrder.csproj.CoreCompileInputs.cache

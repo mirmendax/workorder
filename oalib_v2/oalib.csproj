@@ -50,9 +50,13 @@
     <Compile Include="EmpS.cs" />
     <Compile Include="Emp.cs" />
     <Compile Include="ListOrder.cs" />
-    <Compile Include="oalib.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Const.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQL.cs" />
+    <Compile Include="Team.cs" />
+    <Compile Include="Tools.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
